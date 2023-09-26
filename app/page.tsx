@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <div className="index_page">
       <div className="search">
-        <input placeholder="찾고 싶은 상품을 검색해보세요" />
+        <input type="text" placeholder="찾고 싶은 상품을 검색해보세요" />
         <button>
           <img src="./icons/search.svg" />
         </button>
