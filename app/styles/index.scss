@@ -1,0 +1,30 @@
+.index_page {
+  .search {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    height: 50px;
+    width: 100%;
+    background-color: white;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border: black solid 1px;
+    display: flex;
+    align-items: center;
+
+    input {
+      height: 2rem;
+      width: 100%;
+      border: none;
+      &:focus-visible {
+        outline: none;
+      }
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+    }
+  }
+}

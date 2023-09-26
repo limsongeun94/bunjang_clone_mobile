@@ -12,11 +12,15 @@
     "@types/node": "20.6.2",
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
+    "@types/react-slick": "^0.23.10",
+    "iron-session": "^6.3.1",
     "next": "13.4.19",
     "node-sass": "^9.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-slick": "^0.29.0",
     "sass": "^1.67.0",
+    "slick-carousel": "^1.8.1",
     "typescript": "5.2.2"
   }
 }
