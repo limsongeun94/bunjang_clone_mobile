@@ -7,6 +7,7 @@ import axios from "@/app/libs/axios";
 import type { Banner, Category, Product, User } from "@/app/interface";
 import { useEffect, useState } from "react";
 import Carousel from "./component/carousel";
+import Footer from "./component/footer";
 
 interface IndexProps {
   data: {
@@ -30,6 +31,7 @@ export default function Home() {
         </button>
       </div>
       <Carousel />
+      <Footer />
     </div>
   );
 }

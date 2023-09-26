@@ -1,6 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+$color-red: rgb(255, 80, 88);
+
+body {
+  margin: 0;
+  font-family: "Noto Sans KR", sans-serif !important;
+}
+
 .index_page {
   .search {
-    position: fixed;
+    position: sticky;
     top: 0;
     right: 0;
     z-index: 999;
@@ -9,9 +18,9 @@
     background-color: white;
     padding: 0 10px;
     box-sizing: border-box;
-    border: black solid 1px;
     display: flex;
     align-items: center;
+    border-bottom: 2px solid $color-red;
 
     input {
       height: 2rem;
