@@ -1,12 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
-
-$color-red: rgb(255, 80, 88);
-$color-darkGray: rgb(102, 102, 102);
-
-* {
-  margin: 0;
-  font-family: "Noto Sans KR", sans-serif !important;
-}
+@import "./global.scss";
 
 .index_page {
   .search {
@@ -29,8 +21,6 @@ $color-darkGray: rgb(102, 102, 102);
       border: none;
       &:focus-visible {
         outline: none;
-      }
-      &::placeholder {
       }
     }
 

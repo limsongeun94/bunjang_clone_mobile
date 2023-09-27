@@ -1,24 +1,18 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import "./styles/global.scss";
 import "./styles/index.scss";
-import { withIronSessionSsr } from "iron-session/next";
-import { ironSessionOptions } from "@/app/libs/session";
-import axios from "@/app/libs/axios";
-import type { Banner, Category, Product, User } from "@/app/interface";
-import { useEffect, useState } from "react";
-import Carousel from "./component/carousel";
-import Footer from "./component/footer";
-
-interface IndexProps {
-  data: {
-    banners: Array<Banner>;
-    products: Array<Product>;
-    categories: Array<Category>;
-  };
-  user: User;
-}
+import Carousel from "./component/Carousel";
+import Footer from "./component/Footer";
+import GNB from "./component/GNB";
 
 export default function Home() {
+  const [pageState, setPageState] = useState("");
+  useEffect(() => {
+    setPageState("home");
+  }, []);
+
   return (
     <div className="index_page">
       <div className="search">
@@ -32,6 +26,7 @@ export default function Home() {
       </div>
       <Carousel />
       <Footer />
+      <GNB pageState={pageState} />
     </div>
   );
 }
