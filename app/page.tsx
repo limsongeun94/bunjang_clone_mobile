@@ -1,17 +1,20 @@
-"use client";
+// "use client";
 
-import { useState, useEffect } from "react";
 import "./styles/global.scss";
 import "./styles/index.scss";
-import Carousel from "./component/Carousel";
-import Footer from "./component/Footer";
-import GNB from "./component/GNB";
+import Carousel from "./components/Carousel";
+import Footer from "./components/Footer";
+import GNB from "./components/GNB";
 
-export default function Home() {
-  const [pageState, setPageState] = useState("");
-  useEffect(() => {
-    setPageState("home");
-  }, []);
+export default async function Home() {
+  const res = await fetch("http://localhost:3000/api/landing");
+  const data = await res.json();
+  console.log(data);
+  const pageState = "";
+  // const [pageState, setPageState] = useState("");
+  // useEffect(() => {
+  //   setPageState("home");
+  // }, []);
 
   return (
     <div className="index_page">
@@ -26,7 +29,7 @@ export default function Home() {
       </div>
       <Carousel />
       <Footer />
-      <GNB pageState={pageState} />
+      <GNB pageState={data} />
     </div>
   );
 }

@@ -9,6 +9,8 @@ interface Props {
 }
 
 export default ({ pageState }: Props) => {
+  console.log(pageState);
+
   return (
     <nav>
       <div></div>
