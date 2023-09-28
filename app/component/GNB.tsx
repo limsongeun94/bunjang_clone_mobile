@@ -4,7 +4,11 @@ import { useState, useEffect } from "react";
 import "../styles/global.scss";
 import "../styles/gnb.scss";
 
-export default (pageState: string) => {
+interface Props {
+  pageState: string;
+}
+
+export default ({ pageState }: Props) => {
   return (
     <nav>
       <div></div>
