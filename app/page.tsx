@@ -63,10 +63,12 @@ export default async function Home() {
           <img src="icons/category_collectibles.png" />
           <div>희귀/수집품</div>
         </div>
-        <div className="category_item">
-          <img src="/icons/category_all.png" />
-          <div>전체보기</div>
-        </div>
+        <Link href="/?menu=true" className="link category_item">
+          <div>
+            <img src="/icons/category_all.png" />
+            <div>전체보기</div>
+          </div>
+        </Link>
       </section>
       <section className="product_section">
         {data.products.map((product: Product) => {

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import "../_styles/global.scss";
 import "../_styles/category_nav.scss";
+import Link from "next/link";
 
 export default () => {
   const searchParams = useSearchParams();
@@ -25,9 +26,9 @@ export default () => {
       <div className="category_nav">
         <div className="title">
           <h1>카테고리</h1>
-          <button className="closeBtn">
+          <Link href="/" className="link closeBtn">
             <img src="/icons/close.svg" width="15px" height="15px" />
-          </button>
+          </Link>
         </div>
         <h2>중고거래</h2>
         <div className="category_list">
