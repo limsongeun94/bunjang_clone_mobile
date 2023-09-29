@@ -15,6 +15,7 @@ export default async function Home() {
   console.log(data);
   const pageState = "";
 
+  // 날짜 형식에 맞게 변환하는 함수
   const showDate = (update_time: number): string => {
     const myDate = new Date(update_time * 1000);
     return (
@@ -30,6 +31,7 @@ export default async function Home() {
     );
   };
 
+  // 제목 24자 넘어가는 부분 ...으로 바꿔주는 함수
   const showTitle = (title: string): string => {
     return title?.length > 24 ? title.substr(0, 23) + "..." : title;
   };

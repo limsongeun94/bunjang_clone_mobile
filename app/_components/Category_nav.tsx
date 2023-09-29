@@ -10,6 +10,7 @@ export default () => {
   const searchParams = useSearchParams();
   const menu = searchParams.get("menu");
 
+  // 스크롤 막는 함수
   useEffect(() => {
     if (menu === "true") {
       document.body.style.cssText = `overflow: hidden`;
