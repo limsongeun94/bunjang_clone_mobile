@@ -11,12 +11,12 @@ footer {
         weight: bold;
         size: 12px;
       }
-      color: $color-darkGray;
+      color: rgb(102, 102, 102);
     }
 
     @mixin footer-text {
       margin-top: 10px;
-      color: $color-lightGray;
+      color: rgb(153, 153, 153);
     }
 
     &:nth-child(2) {

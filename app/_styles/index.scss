@@ -1,0 +1,130 @@
+@import "./global.scss";
+
+.index_page {
+  .search {
+    position: sticky;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    height: 50px;
+    width: 100%;
+    background-color: white;
+    padding: 0 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid $color-red;
+
+    input {
+      height: 2rem;
+      width: 100%;
+      border: none;
+      &:focus-visible {
+        outline: none;
+      }
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+    }
+  }
+
+  .category_section {
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+
+    .category_item {
+      width: (100%/5);
+      text-align: center;
+
+      img {
+        width: 100%;
+        max-width: 50px;
+      }
+
+      div {
+        font-size: 12px;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+  }
+
+  .product_section {
+    width: 100%;
+    padding: 0 0.5rem;
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+
+    .product_box {
+      width: calc((100% - 8px) / 2);
+      margin-right: 0.5rem;
+      margin-bottom: 18px;
+
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+
+      .product_img_box {
+        width: 100%;
+        padding-bottom: 100%;
+        margin-bottom: 0.25rem;
+        position: relative;
+
+        .product_img {
+          width: 100%;
+          height: 100%;
+          border-radius: 1rem;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+
+        .product_pay {
+          position: absolute;
+          bottom: 10px;
+          left: 11px;
+        }
+      }
+
+      .product_title {
+        margin-top: 10px;
+        font-size: 14px;
+      }
+      .product_price {
+        margin-top: 3px;
+        font-weight: bold;
+      }
+      .product_zzim_time {
+        display: flex;
+        margin-top: 3px;
+        align-items: center;
+        justify-content: space-between;
+
+        .product_zzim {
+          font-size: 12px;
+          color: rgb(114, 112, 127);
+          background: {
+            image: url("/icons/product_img_heart.svg");
+            position: 0 center;
+            repeat: no-repeat;
+            size: 12px 12px;
+          }
+          padding-left: 1rem;
+        }
+        .product_time {
+          color: rgb(155, 153, 169);
+        }
+      }
+    }
+  }
+
+  .gnb_container {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+  }
+}

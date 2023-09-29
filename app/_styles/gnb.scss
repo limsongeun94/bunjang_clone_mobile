@@ -1,0 +1,48 @@
+@import "./global.scss";
+
+nav {
+  display: flex;
+  width: 100%;
+  height: 3.5rem;
+  justify-content: space-around;
+  border-top: 1px solid rgb(244, 244, 250);
+  z-index: 2000;
+  background-color: white;
+
+  $active-home: "/icons/gnb_home_active.svg";
+  $nonactive-home: "/icons/gnb_home_nonactive.svg";
+  $registration: "/icons/gnb_registration.svg";
+  $active-myshop: "/icons/gnb_myshop_active.svg";
+  $nonactive-myshop: "/icons/gnb_myshop_nonactive.svg";
+
+  @mixin gnb-bg($bgImg) {
+    background: {
+      image: url($bgImg);
+      size: 20px 20px;
+      position: center center;
+      repeat: no-repeat;
+    }
+  }
+
+  div {
+    width: 4.5rem;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  .index_homeBtn {
+    @include gnb-bg($active-home);
+  }
+  .myshop_homeBtn {
+    @include gnb-bg($nonactive-home);
+  }
+  .regiBtn {
+    @include gnb-bg($registration);
+  }
+  .index_myshopBtn {
+    @include gnb-bg($nonactive-myshop);
+  }
+  .myshop_myshopBtn {
+    @include gnb-bg($active-myshop);
+  }
+}

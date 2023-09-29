@@ -33,4 +33,5 @@ export interface Product {
   pid: string;
   bun_pay_filter_enabled: boolean;
   free_shipping: boolean;
+  num_faved: string;
 }

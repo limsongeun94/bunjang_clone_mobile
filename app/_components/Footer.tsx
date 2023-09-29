@@ -1,5 +1,5 @@
-import "../styles/global.scss";
-import "../styles/footer.scss";
+import "../_styles/global.scss";
+import "../_styles/footer.scss";
 
 export default () => {
   return (

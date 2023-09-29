@@ -4,8 +4,9 @@ import products from "@/data/products.json";
 
 // endpoint: /api/landing
 export async function GET(req: NextRequest) {
+  //const index_products = products.slice(0, 50);
   const ret = {
-    products,
+    products: products.slice(0, 50),
     categories,
   };
 
