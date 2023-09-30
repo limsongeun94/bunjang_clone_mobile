@@ -5,13 +5,8 @@ import { usePathname } from "next/navigation";
 import "../_styles/global.scss";
 import "../_styles/gnb.scss";
 
-interface Props {
-  pageState: string;
-}
-
-export default ({ pageState }: Props) => {
+export default () => {
   const pathname = usePathname();
-  console.log(pageState);
 
   return (
     <nav>

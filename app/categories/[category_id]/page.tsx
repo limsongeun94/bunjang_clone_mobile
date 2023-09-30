@@ -7,7 +7,11 @@ import OneCol from "@/app/_components/ProductList_oneCol";
 import TwoCol from "@/app/_components/ProductList_twoCol";
 import ThreeCol from "@/app/_components/ProductList_threeCol";
 
-export default () => {
+type propstype = {
+  data: string;
+};
+
+export default ({ data }: propstype) => {
   const [colType, setColType] = useState("three"); // "three" | "one" | "two"
 
   const changeViewType = () => {
@@ -19,6 +23,8 @@ export default () => {
       setColType("three");
     }
   };
+
+  console.log(data);
 
   return (
     <div className="category_page">
@@ -64,11 +70,11 @@ export default () => {
           </button>
         </div>
         {colType === "three" ? (
-          <OneCol />
-        ) : colType === "one" ? (
-          <TwoCol />
-        ) : (
           <ThreeCol />
+        ) : colType === "one" ? (
+          <OneCol />
+        ) : (
+          <TwoCol />
         )}
       </section>
     </div>

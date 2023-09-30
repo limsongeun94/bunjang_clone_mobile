@@ -12,8 +12,6 @@ import Link from "next/link";
 export default async function Home() {
   const res = await fetch("http://localhost:3000/api/landing");
   const data = await res.json();
-  console.log(data);
-  const pageState = "";
 
   // 날짜 형식에 맞게 변환하는 함수
   const showDate = (update_time: number): string => {
@@ -149,7 +147,7 @@ export default async function Home() {
       </section>
       <Footer />
       <div className="gnb_container">
-        <GNB pageState={data} />
+        <GNB />
       </div>
       <Category />
     </div>
