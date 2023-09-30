@@ -1,0 +1,67 @@
+@import "./global.scss";
+
+.oneCol_page {
+  .product_wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 110px;
+    padding: 0px 1rem;
+
+    .product_img_wrapper {
+      width: 110px;
+      height: 110px;
+      background-color: black;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .product_text_wrapper {
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+
+      .product_price {
+        margin: 8px 0px 4px;
+        font-size: 18px;
+        font-weight: bold;
+        &:after {
+          content: "원";
+          font-size: 14px;
+          margin-left: 2px;
+        }
+      }
+
+      .product_title {
+        margin-bottom: 10px;
+        width: 100%;
+        font-size: 14px;
+        color: rgb(114, 112, 127);
+        overflow: hidden;
+      }
+
+      .product_zzimloca {
+        display: flex;
+        font-size: 12px;
+
+        .product_zzim {
+          color: rgb(155, 153, 169);
+          display: flex;
+          align-items: center;
+          margin-right: 8px;
+
+          span {
+            margin-left: 3px;
+          }
+        }
+        .product_location {
+          color: rgb(136, 136, 136);
+
+          span {
+            margin-left: 2px;
+          }
+        }
+      }
+    }
+  }
+}

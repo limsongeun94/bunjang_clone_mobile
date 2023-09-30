@@ -1,0 +1,70 @@
+@import "./global.scss";
+
+.category_page {
+  .category_header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 999;
+
+    .category_wrapper {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      position: relative;
+
+      @mixin header-btn {
+        cursor: pointer;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .backBtn {
+        border: none;
+        background-color: transparent;
+        @include header-btn();
+      }
+
+      h1 {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .searchBtn {
+        @include header-btn();
+      }
+    }
+  }
+
+  .product_list {
+    .filter {
+      border-bottom: 1px solid rgb(238, 238, 238);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .product_count {
+        padding: 15px;
+        line-height: 15px;
+
+        span {
+          margin-left: 5px;
+        }
+      }
+
+      .view_filter {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        width: 45px;
+        padding: 15px;
+        box-sizing: border-box;
+      }
+    }
+  }
+}
