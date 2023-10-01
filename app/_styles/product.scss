@@ -1,0 +1,127 @@
+@import "./global.scss";
+
+.product_detail_page {
+  .product_basicInfo_wrap {
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    padding: 15px;
+
+    .product_title {
+      margin: 0px 0px 15px;
+      font-size: 15px;
+    }
+
+    .product_price {
+      margin-bottom: 15px;
+      font-size: 15px;
+      font-weight: bold;
+      margin-right: 4px;
+      display: flex;
+      align-items: flex-end;
+
+      span {
+        margin-left: 4px;
+      }
+    }
+
+    .product_tiemzzimview_wrap {
+      color: rgb(136, 136, 136);
+      font-size: 15px;
+      display: flex;
+      justify-content: space-between;
+      .product_time {
+      }
+
+      .product_zzimview_wrap {
+        display: flex;
+
+        .product_zzim {
+          margin-right: 16px;
+
+          .product_zzim_img {
+            width: 15px;
+            height: 15px;
+            margin-right: 6px;
+          }
+        }
+
+        .product_view {
+          img {
+            margin-right: 6px;
+          }
+        }
+      }
+    }
+  }
+
+  .product_explaininfo_wrap {
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    padding: 15px 15px 0px;
+
+    .product_usedship_wrap {
+      display: flex;
+      margin-bottom: 15px;
+
+      span {
+        border-radius: 4px;
+        border: 1px solid rgb(0, 114, 255);
+        padding: 7px 10px 6px;
+        font-size: 10px;
+        color: rgb(0, 114, 255);
+        white-space: nowrap;
+        &:last-child {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .product_count {
+      margin-bottom: 15px;
+
+      strong {
+        margin-right: 5px;
+        font-weight: normal;
+        color: rgb(136, 136, 136);
+      }
+    }
+
+    .product_explain {
+      margin-bottom: 15px;
+    }
+
+    .product_etc_explain {
+      color: rgb(136, 136, 136);
+      list-style: none;
+      padding-left: 0;
+
+      li {
+        position: relative;
+        margin-bottom: 15px;
+        padding-left: 12px;
+        display: flex;
+        align-items: center;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 10px;
+          left: 2px;
+          display: inline-block;
+          border-radius: 50%;
+          width: 3px;
+          height: 3px;
+          background-color: rgb(136, 136, 136);
+        }
+
+        span {
+          margin-left: 10px;
+        }
+
+        .red {
+          color: $color-red;
+        }
+      }
+    }
+  }
+}

@@ -4,7 +4,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function Carousel() {
+type propstype = {
+  imgArr: string[];
+};
+
+function Carousel({ imgArr }: propstype) {
   const settings = {
     dots: false,
     infinite: true,
@@ -17,15 +21,13 @@ function Carousel() {
 
   return (
     <Slider {...settings}>
-      <div>
-        <img width="100%" src="./banners/bag banner - phone.jpg" />
-      </div>
-      <div>
-        <img width="100%" src="./banners/nuigurumi banner - phone.jpg" />
-      </div>
-      <div>
-        <img width="100%" src="./banners/keyring banner - phone.jpg" />
-      </div>
+      {imgArr.map((el, i) => {
+        return (
+          <div key={i}>
+            <img width="100%" src={el} />
+          </div>
+        );
+      })}
     </Slider>
   );
 }

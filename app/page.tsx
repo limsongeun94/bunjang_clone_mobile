@@ -34,6 +34,12 @@ export default async function Home() {
     return title?.length > 24 ? title.substr(0, 23) + "..." : title;
   };
 
+  let banner = [
+    "./banners/bag banner - phone.jpg",
+    "./banners/nuigurumi banner - phone.jpg",
+    "./banners/keyring banner - phone.jpg",
+  ];
+
   return (
     <div className="index_page">
       <div className="search">
@@ -45,7 +51,7 @@ export default async function Home() {
           <img src="./icons/zzim.svg" />
         </button>
       </div>
-      <Carousel />
+      <Carousel imgArr={banner} />
       <section className="category_section">
         <div className="category_item">
           <img src="/icons/category_figure.png" />
@@ -73,7 +79,10 @@ export default async function Home() {
       <section className="product_section">
         {data.products.map((product: Product) => {
           return (
-            <div className="product_box">
+            <Link
+              href={`/products/` + product.pid}
+              className="link product_box"
+            >
               <div className="product_img_box">
                 <img
                   className="product_img"
@@ -141,7 +150,7 @@ export default async function Home() {
                   {showDate(product.update_time)}
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </section>

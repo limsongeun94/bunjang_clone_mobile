@@ -7,11 +7,7 @@ import OneCol from "@/app/_components/ProductList_oneCol";
 import TwoCol from "@/app/_components/ProductList_twoCol";
 import ThreeCol from "@/app/_components/ProductList_threeCol";
 
-type propstype = {
-  data: string;
-};
-
-export default ({ data }: propstype) => {
+export default () => {
   const [colType, setColType] = useState("three"); // "three" | "one" | "two"
 
   const changeViewType = () => {
