@@ -5,10 +5,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 type propstype = {
-  imgArr: string[];
+  bannerArr: string[];
 };
 
-function Carousel({ imgArr }: propstype) {
+function Carousel(props: propstype) {
   const settings = {
     dots: false,
     infinite: true,
@@ -21,7 +21,7 @@ function Carousel({ imgArr }: propstype) {
 
   return (
     <Slider {...settings}>
-      {imgArr.map((el, i) => {
+      {props.bannerArr.map((el, i) => {
         return (
           <div key={i}>
             <img width="100%" src={el} />

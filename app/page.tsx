@@ -2,7 +2,7 @@
 
 import "./_styles/global.scss";
 import "./_styles/index.scss";
-import Carousel from "./_components/Carousel";
+import Carousel from "./_components/Carousel_index";
 import Footer from "./_components/Footer";
 import GNB from "./_components/GNB";
 import Category from "./_components/Category_nav";
@@ -51,7 +51,7 @@ export default async function Home() {
           <img src="./icons/zzim.svg" />
         </button>
       </div>
-      <Carousel imgArr={banner} />
+      <Carousel bannerArr={banner} />
       <section className="category_section">
         <div className="category_item">
           <img src="/icons/category_figure.png" />

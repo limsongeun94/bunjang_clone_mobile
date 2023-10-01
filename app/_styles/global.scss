@@ -14,3 +14,19 @@ $color-red: rgb(255, 80, 88);
   text-decoration: none;
   cursor: pointer;
 }
+
+.slick-dots {
+  bottom: 12px !important;
+
+  li {
+    width: 6px !important;
+  }
+
+  .slick-active {
+    button {
+      &::before {
+        color: $color-red !important;
+      }
+    }
+  }
+}

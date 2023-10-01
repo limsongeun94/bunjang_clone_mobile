@@ -1,6 +1,6 @@
 import "@/app/_styles/index.scss";
 import "@/app/_styles/product.scss";
-import Carousel from "@/app/_components/Carousel";
+import Carousel from "@/app/_components/Carousel_product";
 import Footer from "@/app/_components/Footer";
 
 export default async ({ params }: { params: { product_id: string } }) => {
@@ -11,36 +11,41 @@ export default async ({ params }: { params: { product_id: string } }) => {
 
   console.log(data);
 
-  // 날짜 형식에 맞게 변환하는 함수
-  const showDate = (update_time: number): string => {
-    const myDate = new Date(update_time * 1000);
-    return (
-      myDate.getFullYear() +
-      "." +
-      (myDate.getMonth() + 1 > 9
-        ? (myDate.getMonth() + 1).toString()
-        : "0" + (myDate.getMonth() + 1)) +
-      "." +
-      (myDate.getDate() > 9
-        ? myDate.getDate().toString()
-        : "0" + myDate.getDate().toString())
-    );
-  };
-
-  // const res_category = await fetch(
-  //   "http://localhost:3000/api/category?id=930100"
-  // );
-  // const category_name = await res_category.json();
-  // console.log(category_name);
-
   return (
     <div className="product_detail_page">
-      {/* <Carousel /> */}
+      <div className="product_headnav">
+        <button>
+          <svg
+            width="32"
+            height="32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g fill="#ffffff">
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M8.801 12.4016L16 7.9576L23.199 12.4016V24.0006H16.901V16.3736C16.901 15.8766 16.497 15.4736 16 15.4736C15.503 15.4736 15.1 15.8766 15.1 16.3736V24.0006H8.801V12.4016ZM7.901 25.7996H24.1C24.597 25.7996 25 25.3976 25 24.9006V11.8996C25 11.5876 24.838 11.2976 24.572 11.1336L16.473 6.1346C16.184 5.9546 15.817 5.9546 15.528 6.1346L7.428 11.1336C7.162 11.2976 7 11.5876 7 11.8996V24.9006C7 25.3976 7.404 25.7996 7.901 25.7996V25.7996Z"
+              ></path>
+            </g>
+          </svg>
+        </button>
+        <button>
+          <svg width="20" height="20" viewBox="0 0 20 20">
+            <path
+              fill="#fff"
+              fillRule="evenodd"
+              d="M1.937 7.747a5.817 5.817 0 0 1 5.81-5.81 5.817 5.817 0 0 1 5.812 5.81 5.817 5.817 0 0 1-5.811 5.811 5.817 5.817 0 0 1-5.811-5.81M13.86 12.49a7.695 7.695 0 0 0 1.635-4.743C15.496 3.476 12.02 0 7.748 0S0 3.476 0 7.747c0 4.272 3.476 7.748 7.748 7.748a7.703 7.703 0 0 0 4.742-1.635l3.857 3.855a.966.966 0 0 0 1.369 0 .967.967 0 0 0 0-1.37l-3.855-3.855z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <Carousel imageUrl={data.imageUrl} imageCount={data.imageCount} />
       <div className="product_basicInfo_wrap">
         <div className="product_title">{data.name}</div>
         <div className="product_price">
           {data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
-          {data.bun_pay_filter_enabled ? (
+          {data.bunpayHope ? (
             <span>
               <svg
                 width="35"
@@ -92,7 +97,9 @@ export default async ({ params }: { params: { product_id: string } }) => {
           )}
         </div>
         <div className="product_tiemzzimview_wrap">
-          <div className="product_time">{showDate(data.update_time)}</div>
+          <div className="product_time">
+            {data.updatedAt.slice(0, 10).replaceAll("-", ".")}
+          </div>
           <div className="product_zzimview_wrap">
             <div className="product_zzim">
               <span className="product_zzim_img">
@@ -137,7 +144,7 @@ export default async ({ params }: { params: { product_id: string } }) => {
                   </g>
                 </svg>
               </span>
-              11
+              {data.metrics.favoriteCount}
             </div>
             <div className="product_view">
               <img
@@ -145,21 +152,23 @@ export default async ({ params }: { params: { product_id: string } }) => {
                 width="22px"
                 height="15px"
               />
-              23
+              {data.metrics.viewCount}
             </div>
           </div>
         </div>
       </div>
       <div className="product_explaininfo_wrap">
         <div className="product_usedship_wrap">
-          <span>중고상품</span>
-          <span>배송비 별도</span>
+          <span>{data.status === "USED" ? "중고상품" : "새상품"}</span>
+          <span>
+            {data.includeShippingCost ? "배송비 무료" : "배송비 별도"}
+          </span>
         </div>
         <div className="product_count">
           <strong>수량</strong>
-          <span>1개</span>
+          <span>{data.qty}개</span>
         </div>
-        <div className="product_explain">상품 설명</div>
+        <pre className="product_explain">{data.description}</pre>
         <ul className="product_etc_explain">
           <li>
             거래지역{" "}
@@ -218,22 +227,23 @@ export default async ({ params }: { params: { product_id: string } }) => {
             </span>
           </li>
           <li>
-            카테고리 <span className="red">스카프</span>
+            카테고리 <span className="red">{data.category.name}</span>
           </li>
           <li>
             상품태그{" "}
-            <span className={data.tag === "" ? "" : `red`}>
-              {data.tag === ""
+            <span className={data.keywords.length === 0 ? "" : `red`}>
+              {data.keywords.length === 0
                 ? "정보없음"
-                : data.tag
-                    .split(" ")
-                    .map((el: string) => "#" + el)
-                    .join(" ")}
+                : data.keywords.map((el: string) => "#" + el).join(" ")}
             </span>
           </li>
         </ul>
       </div>
       <Footer />
+      <div className="product_trade">
+        <button>번개톡</button>
+        <button>번개페이 안전결제</button>
+      </div>
     </div>
   );
 };

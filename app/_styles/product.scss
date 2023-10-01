@@ -1,6 +1,27 @@
 @import "./global.scss";
 
 .product_detail_page {
+  .product_headnav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 9999;
+    height: 50px;
+    display: flex;
+    align-items: center;
+
+    button {
+      width: 2rem;
+      height: 2rem;
+      border: none;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+    }
+  }
+
   .product_basicInfo_wrap {
     margin-bottom: 12px;
     border-bottom: 1px solid rgb(238, 238, 238);
@@ -88,6 +109,9 @@
 
     .product_explain {
       margin-bottom: 15px;
+      width: 100%;
+      overflow: auto;
+      white-space: pre-wrap;
     }
 
     .product_etc_explain {
@@ -121,6 +145,37 @@
         .red {
           color: $color-red;
         }
+      }
+    }
+  }
+
+  .product_trade {
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 56px;
+    background-color: white;
+    border-top: 1px solid rgb(244, 244, 250);
+    display: flex;
+    align-items: center;
+
+    button {
+      height: 100%;
+      width: (100%/2);
+      border: none;
+      // padding: 0 34px;
+      font-size: 18px;
+      font-weight: bold;
+
+      &:first-child {
+        background-color: white;
+        color: $color-red;
+      }
+
+      &:last-child {
+        background-color: $color-red;
+        color: white;
       }
     }
   }
