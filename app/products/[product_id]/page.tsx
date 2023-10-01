@@ -227,7 +227,7 @@ export default async ({ params }: { params: { product_id: string } }) => {
                 ? "정보없음"
                 : data.tag
                     .split(" ")
-                    .map((el) => "#" + el)
+                    .map((el: string) => "#" + el)
                     .join(" ")}
             </span>
           </li>
