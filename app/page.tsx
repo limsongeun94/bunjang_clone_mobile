@@ -42,6 +42,7 @@ export default async function Home() {
 
   return (
     <div className="index_page">
+      <Category />
       <div className="search">
         <input type="text" placeholder="찾고 싶은 상품을 검색해보세요" />
         <button>
@@ -53,22 +54,22 @@ export default async function Home() {
       </div>
       <Carousel bannerArr={banner} />
       <section className="category_section">
-        <div className="category_item">
+        <Link href="/categories/930100" className="link category_item">
           <img src="/icons/category_figure.png" />
           <div>피규어/인형</div>
-        </div>
-        <div className="category_item">
+        </Link>
+        <Link href="/categories/900500200" className="link category_item">
           <img src="/icons/category_fancy.png" />
           <div>문구/필기류</div>
-        </div>
-        <div className="category_item">
+        </Link>
+        <Link href="/categories/910100001" className="link category_item">
           <img src="/icons/category_photocard.png" />
           <div>팬시/포토카드</div>
-        </div>
-        <div className="category_item">
+        </Link>
+        <Link href="/categories/990100" className="link category_item">
           <img src="icons/category_collectibles.png" />
           <div>희귀/수집품</div>
-        </div>
+        </Link>
         <Link href="/?menu=true" className="link category_item">
           <div>
             <img src="/icons/category_all.png" />
@@ -158,7 +159,6 @@ export default async function Home() {
       <div className="gnb_container">
         <GNB />
       </div>
-      <Category />
     </div>
   );
 }

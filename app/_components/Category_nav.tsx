@@ -33,26 +33,105 @@ export default () => {
         </div>
         <h2>중고거래</h2>
         <div className="category_list">
-          <div>피규어/인형</div>
-          <div>학습도구/문구/필기류</div>
-          <div>팬시/포토카드</div>
-          <div>인형/피규어(보이그룹)</div>
-          <div>희귀/수집품</div>
-          <div>키링/키케이스</div>
-          <div>기타(키덜트)</div>
-          <div>파우치/정리함(화장품)</div>
-          <div>액세서리</div>
-          <div>기타</div>
-          <div>인형(유아용)</div>
-          <div>케이스/보호필름/액세서리</div>
-          <div>의류/패션잡화</div>
-          <div>네일아트/스티커</div>
-          <div>가방/지갑</div>
-          <div>닌텐도/NDS/Wii</div>
-          <div>텀블러/물병</div>
-          <div>액세서리(기타)</div>
-          <div>퍼프/거울(뷰티소품)</div>
-          <div>만화</div>
+          <Link href="/categories/930100" className="link category_list_item">
+            피규어/인형
+          </Link>
+          <Link
+            href="/categories/900500200"
+            className="link category_list_item"
+          >
+            학습도구/문구/필기류
+          </Link>
+          <Link
+            href="/categories/910100001"
+            className="link category_list_item"
+          >
+            팬시/포토카드
+          </Link>
+          <Link
+            href="/categories/910100008"
+            className="link category_list_item"
+          >
+            인형/피규어(보이그룹)
+          </Link>
+          <Link href="/categories/990100" className="link category_list_item">
+            희귀/수집품
+          </Link>
+          <Link href="/categories/400600" className="link category_list_item">
+            키링/키케이스
+          </Link>
+          <Link href="/categories/930999" className="link category_list_item">
+            기타(키덜트)
+          </Link>
+          <Link
+            href="/categories/410800200"
+            className="link category_list_item"
+          >
+            파우치/정리함(화장품)
+          </Link>
+          <Link
+            href="/categories/500116005"
+            className="link category_list_item"
+          >
+            액세서리
+          </Link>
+          <Link href="/categories/999" className="link category_list_item">
+            기타
+          </Link>
+          <Link
+            href="/categories/500119004"
+            className="link category_list_item"
+          >
+            인형(유아용)
+          </Link>
+          <Link
+            href="/categories/600700003"
+            className="link category_list_item"
+          >
+            케이스/보호필름/액세서리
+          </Link>
+          <Link
+            href="/categories/910100006"
+            className="link category_list_item"
+          >
+            의류/패션잡화
+          </Link>
+          <Link
+            href="/categories/410700200"
+            className="link category_list_item"
+          >
+            네일아트/스티커
+          </Link>
+          <Link href="/categories/430" className="link category_list_item">
+            가방/지갑
+          </Link>
+          <Link
+            href="/categories/600600001"
+            className="link category_list_item"
+          >
+            닌텐도/NDS/Wii
+          </Link>
+          <Link
+            href="/categories/800400040"
+            className="link category_list_item"
+          >
+            텀블러/물병
+          </Link>
+          <Link href="/categories/400999" className="link category_list_item">
+            액세서리(기타)
+          </Link>
+          <Link
+            href="/categories/410800100"
+            className="link category_list_item"
+          >
+            퍼프/거울(뷰티소품)
+          </Link>
+          <Link
+            href="/categories/900100010"
+            className="link category_list_item"
+          >
+            만화
+          </Link>
         </div>
       </div>
     );

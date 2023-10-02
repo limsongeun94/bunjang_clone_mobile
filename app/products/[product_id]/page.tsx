@@ -2,6 +2,7 @@ import "@/app/_styles/index.scss";
 import "@/app/_styles/product.scss";
 import Carousel from "@/app/_components/Carousel_product";
 import Footer from "@/app/_components/Footer";
+import Back_url from "@/app/_components/Back_url";
 
 export default async ({ params }: { params: { product_id: string } }) => {
   const res = await fetch(
@@ -9,36 +10,48 @@ export default async ({ params }: { params: { product_id: string } }) => {
   );
   const data = await res.json();
 
-  console.log(data);
-
   return (
     <div className="product_detail_page">
       <div className="product_headnav">
-        <button>
-          <svg
-            width="32"
-            height="32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g fill="#ffffff">
+        <Back_url>
+          <button>
+            <svg width="20" height="20" viewBox="0 0 20 20">
+              <g fill="#fff">
+                <path
+                  fillRule="evenodd"
+                  d="M19 8.996H3.66L9.657 3.75a1 1 0 0 0-1.316-1.506l-8 7c-.008.007-.01.018-.019.025a.975.975 0 0 0-.177.24c-.018.03-.045.054-.059.087a.975.975 0 0 0 0 .802c.014.033.041.057.06.088.05.087.103.17.176.239.008.007.011.018.02.025l8 7a.996.996 0 0 0 1.41-.095 1 1 0 0 0-.095-1.411L3.66 10.996H19a1 1 0 1 0 0-2"
+                ></path>
+              </g>
+            </svg>
+          </button>
+        </Back_url>
+        <div>
+          <button>
+            <svg
+              width="32"
+              height="32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g fill="#ffffff">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M8.801 12.4016L16 7.9576L23.199 12.4016V24.0006H16.901V16.3736C16.901 15.8766 16.497 15.4736 16 15.4736C15.503 15.4736 15.1 15.8766 15.1 16.3736V24.0006H8.801V12.4016ZM7.901 25.7996H24.1C24.597 25.7996 25 25.3976 25 24.9006V11.8996C25 11.5876 24.838 11.2976 24.572 11.1336L16.473 6.1346C16.184 5.9546 15.817 5.9546 15.528 6.1346L7.428 11.1336C7.162 11.2976 7 11.5876 7 11.8996V24.9006C7 25.3976 7.404 25.7996 7.901 25.7996V25.7996Z"
+                ></path>
+              </g>
+            </svg>
+          </button>
+          <button>
+            <svg width="20" height="20" viewBox="0 0 20 20">
               <path
+                fill="#fff"
                 fillRule="evenodd"
-                clipRule="evenodd"
-                d="M8.801 12.4016L16 7.9576L23.199 12.4016V24.0006H16.901V16.3736C16.901 15.8766 16.497 15.4736 16 15.4736C15.503 15.4736 15.1 15.8766 15.1 16.3736V24.0006H8.801V12.4016ZM7.901 25.7996H24.1C24.597 25.7996 25 25.3976 25 24.9006V11.8996C25 11.5876 24.838 11.2976 24.572 11.1336L16.473 6.1346C16.184 5.9546 15.817 5.9546 15.528 6.1346L7.428 11.1336C7.162 11.2976 7 11.5876 7 11.8996V24.9006C7 25.3976 7.404 25.7996 7.901 25.7996V25.7996Z"
+                d="M1.937 7.747a5.817 5.817 0 0 1 5.81-5.81 5.817 5.817 0 0 1 5.812 5.81 5.817 5.817 0 0 1-5.811 5.811 5.817 5.817 0 0 1-5.811-5.81M13.86 12.49a7.695 7.695 0 0 0 1.635-4.743C15.496 3.476 12.02 0 7.748 0S0 3.476 0 7.747c0 4.272 3.476 7.748 7.748 7.748a7.703 7.703 0 0 0 4.742-1.635l3.857 3.855a.966.966 0 0 0 1.369 0 .967.967 0 0 0 0-1.37l-3.855-3.855z"
               ></path>
-            </g>
-          </svg>
-        </button>
-        <button>
-          <svg width="20" height="20" viewBox="0 0 20 20">
-            <path
-              fill="#fff"
-              fillRule="evenodd"
-              d="M1.937 7.747a5.817 5.817 0 0 1 5.81-5.81 5.817 5.817 0 0 1 5.812 5.81 5.817 5.817 0 0 1-5.811 5.811 5.817 5.817 0 0 1-5.811-5.81M13.86 12.49a7.695 7.695 0 0 0 1.635-4.743C15.496 3.476 12.02 0 7.748 0S0 3.476 0 7.747c0 4.272 3.476 7.748 7.748 7.748a7.703 7.703 0 0 0 4.742-1.635l3.857 3.855a.966.966 0 0 0 1.369 0 .967.967 0 0 0 0-1.37l-3.855-3.855z"
-            ></path>
-          </svg>
-        </button>
+            </svg>
+          </button>
+        </div>
       </div>
       <Carousel imageUrl={data.imageUrl} imageCount={data.imageCount} />
       <div className="product_basicInfo_wrap">

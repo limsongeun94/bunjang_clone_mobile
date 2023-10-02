@@ -1,6 +1,8 @@
 @import "./global.scss";
 
 .index_page {
+  height: 100vh;
+
   .search {
     position: sticky;
     top: 0;
@@ -124,6 +126,7 @@
 
   .gnb_container {
     position: sticky;
+    position: -webkit-sticky;
     bottom: 0;
     left: 0;
   }

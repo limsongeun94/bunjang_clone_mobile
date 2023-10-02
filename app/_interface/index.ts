@@ -34,4 +34,5 @@ export interface Product {
   bun_pay_filter_enabled: boolean;
   free_shipping: boolean;
   num_faved: string;
+  location: string;
 }

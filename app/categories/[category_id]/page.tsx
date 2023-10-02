@@ -1,42 +1,36 @@
-"use client";
-
 import "@/app/_styles/index.scss";
 import "@/app/_styles/category.scss";
-import { useState, useEffect } from "react";
-import OneCol from "@/app/_components/ProductList_oneCol";
-import TwoCol from "@/app/_components/ProductList_twoCol";
-import ThreeCol from "@/app/_components/ProductList_threeCol";
+import ProductList from "@/app/_components/ProductList";
+import Back_url from "@/app/_components/Back_url";
 
-export default () => {
-  const [colType, setColType] = useState("three"); // "three" | "one" | "two"
+export default async ({ params }: { params: { category_id: string } }) => {
+  const res = await fetch(
+    "http://localhost:3000/api/product?page=1&size=60&category=" +
+      params.category_id
+  );
+  const data = await res.json();
 
-  const changeViewType = () => {
-    if (colType === "three") {
-      setColType("one");
-    } else if (colType === "one") {
-      setColType("two");
-    } else if (colType === "two") {
-      setColType("three");
-    }
-  };
-
-  console.log(data);
-
+  const res_category = await fetch(
+    "http://localhost:3000/api/category?id=" + params.category_id
+  );
+  const category_name = await res_category.text();
   return (
     <div className="category_page">
       <div className="category_header">
         <div className="category_wrapper">
-          <button className="backBtn">
-            <svg width="20" height="20" viewBox="0 0 20 20">
-              <g fill="#1E1D29" className="Plx Plx--above ">
-                <path
-                  fillRule="evenodd"
-                  d="M19 8.996H3.66L9.657 3.75a1 1 0 0 0-1.316-1.506l-8 7c-.008.007-.01.018-.019.025a.975.975 0 0 0-.177.24c-.018.03-.045.054-.059.087a.975.975 0 0 0 0 .802c.014.033.041.057.06.088.05.087.103.17.176.239.008.007.011.018.02.025l8 7a.996.996 0 0 0 1.41-.095 1 1 0 0 0-.095-1.411L3.66 10.996H19a1 1 0 1 0 0-2"
-                ></path>
-              </g>
-            </svg>
-          </button>
-          <h1>카테고리 이름</h1>
+          <Back_url>
+            <button className="backBtn">
+              <svg width="20" height="20" viewBox="0 0 20 20">
+                <g fill="#1E1D29" className="Plx Plx--above ">
+                  <path
+                    fillRule="evenodd"
+                    d="M19 8.996H3.66L9.657 3.75a1 1 0 0 0-1.316-1.506l-8 7c-.008.007-.01.018-.019.025a.975.975 0 0 0-.177.24c-.018.03-.045.054-.059.087a.975.975 0 0 0 0 .802c.014.033.041.057.06.088.05.087.103.17.176.239.008.007.011.018.02.025l8 7a.996.996 0 0 0 1.41-.095 1 1 0 0 0-.095-1.411L3.66 10.996H19a1 1 0 1 0 0-2"
+                  ></path>
+                </g>
+              </svg>
+            </button>
+          </Back_url>
+          <h1>{category_name}</h1>
           <div className="searchBtn">
             <svg width="20" height="20" viewBox="0 0 20 20">
               <path
@@ -49,30 +43,7 @@ export default () => {
           </div>
         </div>
       </div>
-      <section className="product_list">
-        <div className="filter">
-          <div className="product_count">
-            <strong>1845</strong>
-            <span>개</span>
-          </div>
-          <button className="view_filter" onClick={changeViewType}>
-            {colType === "three" ? (
-              <img src="/icons/oneCol_btn.svg" width="15px" height="15px" />
-            ) : colType === "one" ? (
-              <img src="/icons/twoCol_btn.svg" width="15px" height="15px" />
-            ) : (
-              <img src="/icons/threeCol_btn.svg" width="15px" height="15px" />
-            )}
-          </button>
-        </div>
-        {colType === "three" ? (
-          <ThreeCol />
-        ) : colType === "one" ? (
-          <OneCol />
-        ) : (
-          <TwoCol />
-        )}
-      </section>
+      <ProductList product={data} />
     </div>
   );
 };
