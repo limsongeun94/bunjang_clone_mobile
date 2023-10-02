@@ -14,6 +14,7 @@ export default async ({ params }: { params: { category_id: string } }) => {
     "http://localhost:3000/api/category?id=" + params.category_id
   );
   const category_name = await res_category.text();
+
   return (
     <div className="category_page">
       <div className="category_header">
