@@ -2,6 +2,7 @@ import "@/app/_styles/index.scss";
 import "@/app/_styles/search.scss";
 import ProductList from "@/app/_components/ProductList";
 import Back_url from "@/app/_components/Back_url";
+import Link from "next/link";
 
 export default async ({
   searchParams,
@@ -24,11 +25,15 @@ export default async ({
               <img src="/icons/back.svg" />
             </button>
           </Back_url>
-          <input
-            placeholder="검색어를 입력해주세요"
-            maxLength={40}
-            value={searchParams!.q}
-          />
+          <div className="search_input">
+            <Link href="/search?tab=recent" className="link">
+              <input
+                placeholder="검색어를 입력해주세요"
+                maxLength={40}
+                defaultValue={searchParams!.q}
+              />
+            </Link>
+          </div>
           <a>
             <img src="/icons/search_red.svg" width="15px" height="15px" />
           </a>

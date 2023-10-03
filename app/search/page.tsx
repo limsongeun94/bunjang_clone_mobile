@@ -6,6 +6,7 @@ import Back_url from "@/app/_components/Back_url";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { TouchEvent, KeyboardEvent } from "react";
+import { useRouter } from "next/navigation";
 
 export default ({
   searchParams,
@@ -26,9 +27,16 @@ export default ({
   ];
 
   const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
   // 최근검색어 배열
   const [keywords, setKeywords] = useState<string[]>([]);
+
+  // 검색 결과로 이동하는 함수
+  const goSearchResult = (value: string) => {
+    router.push(`/search/products?q=${value}`);
+    console.log(value);
+  };
 
   // 검색어를 입력하면 최근검색어 배열과 localstorage에 저장하는 함수
   const doSearch = (
@@ -43,6 +51,7 @@ export default ({
         let new_keywords = [inputRef.current!.value, ...keywords];
         setKeywords(new_keywords);
         localStorage.setItem("$KEYWORDS", JSON.stringify(new_keywords));
+        goSearchResult(inputRef.current!.value);
         inputRef.current!.value = "";
       }
     }
@@ -62,7 +71,8 @@ export default ({
   };
 
   // 특정 최근검색어를 제거하는 함수
-  const deleteKeyword = (value: string) => {
+  const deleteKeyword = (value: string, e: TouchEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     let new_keywords = keywords.filter((x) => x !== value);
     setKeywords(new_keywords);
     localStorage.setItem("$KEYWORDS", JSON.stringify(new_keywords));
@@ -82,6 +92,7 @@ export default ({
             placeholder="검색어를 입력해주세요"
             maxLength={40}
             ref={inputRef}
+            className="search_input"
           />
           <a onTouchEnd={doSearch}>
             <img src="/icons/search_red.svg" width="15px" height="15px" />
@@ -111,19 +122,26 @@ export default ({
           <div>
             {keywords.map((el, i) => {
               return (
-                <div key={i} className="recent_search_word">
+                <Link
+                  key={i}
+                  href={`/search/products?q=${el}`}
+                  className="link recent_search_word"
+                >
                   <span>{el}</span>
-                  <button onClick={() => deleteKeyword(el)}>
+                  <button onTouchEnd={(e) => deleteKeyword(el, e)}>
                     <img
                       src="/icons/keyword_delete.svg"
                       width="24px"
                       height="24px"
                     />
                   </button>
-                </div>
+                </Link>
               );
             })}
-            <button onClick={deleteAllKeywords} className="keyword_all_delete">
+            <button
+              onTouchEnd={deleteAllKeywords}
+              className="keyword_all_delete"
+            >
               <img src="/icons/keyword_alldelete.svg" />
               검색어 전체 삭제
             </button>
@@ -131,13 +149,17 @@ export default ({
         ) : (
           popular_keyword_arr.map((el, i) => {
             return (
-              <div key={i} className="popular_search_word">
+              <Link
+                key={i}
+                href={`/search/products?q=${el.name}`}
+                className="link popular_search_word"
+              >
                 <span>
                   <span className="rank">{el.rank}</span>
                   {el.name}
                 </span>
                 <span className="sell">판매</span>
-              </div>
+              </Link>
             );
           })
         )}
