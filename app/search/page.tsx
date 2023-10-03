@@ -6,6 +6,7 @@ import Back_url from "@/app/_components/Back_url";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { TouchEvent, KeyboardEvent } from "react";
+import { KeyWord } from "@/app/_interface";
 
 export default ({
   searchParams,
@@ -25,37 +26,42 @@ export default ({
     { rank: 10, name: "포챠코" },
   ];
 
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     const result = localStorage.getItem("keywords") || "[]";
-  //     setKeywords(JSON.parse(result));
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem("keywords", JSON.stringify(keywords));
-  // }, [keywords]);
-
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const [keywords, setKeywords] = useState<string[]>([]);
   const doSearch = (
     e: KeyboardEvent<HTMLInputElement> | TouchEvent<HTMLAnchorElement>
   ) => {
-    const { keyCode } = e as React.KeyboardEvent<HTMLInputElement>;
+    const { key } = e as React.KeyboardEvent<HTMLInputElement>;
     const { type } = e as TouchEvent<HTMLAnchorElement>;
-    let id = 0;
-    if (keyCode === 13) {
-      console.log(inputRef.current && inputRef.current.value);
-      localStorage.setItem(
-        "keywords",
-        JSON.stringify({
-          id: id++,
-          keyword: inputRef.current && inputRef.current.value,
-        })
-      );
-    } else if (type === "touchend") {
-      console.log(inputRef.current && inputRef.current.value);
+    if (key === "Enter" || type === "touchend") {
+      if (inputRef.current!.value === "") {
+        return;
+      } else {
+        console.log(inputRef.current!.value);
+        let new_keywords: KeyWord[] = [inputRef.current!.value, ...keywords];
+        setKeywords(new_keywords);
+        localStorage.setItem("$KEYWORDS", JSON.stringify(new_keywords));
+        inputRef.current!.value = "";
+      }
     }
+  };
+
+  const getKeywords = () => {
+    let localData = JSON.parse(localStorage.getItem("$KEYWORDS") ?? "[]");
+    setKeywords(localData);
+  };
+
+  useEffect(() => getKeywords(), []);
+
+  const deleteAllKeywords = () => {
+    localStorage.removeItem("$KEYWORDS");
+  };
+
+  const deleteKeyword = (value: string) => {
+    let new_keywords = keywords.filter((x) => x !== value);
+    setKeywords(new_keywords);
+    localStorage.setItem("$KEYWORDS", JSON.stringify(new_keywords));
   };
 
   return (
@@ -81,7 +87,7 @@ export default ({
           <Link
             href="/search?tab=recent"
             className={`search_word_tab ${
-              searchParams.tab === "recent" ? "red" : ""
+              searchParams?.tab === "recent" ? "red" : ""
             } link`}
           >
             최근검색어
@@ -89,15 +95,32 @@ export default ({
           <Link
             href="/search?tab=popular"
             className={`search_word_tab ${
-              searchParams.tab === "popular" ? "red" : ""
+              searchParams?.tab === "popular" ? "red" : ""
             } link`}
           >
             인기검색어
           </Link>
         </div>
-        {searchParams.tab === "recent" ? (
-          <div className="recent_search_word">
-            <span>안녕?</span>
+        {searchParams?.tab === "recent" ? (
+          <div>
+            {keywords.map((el, i) => {
+              return (
+                <div key={i} className="recent_search_word">
+                  <span>{el}</span>
+                  <button onClick={() => deleteKeyword(el)}>
+                    <img
+                      src="/icons/keyword_delete.svg"
+                      width="24px"
+                      height="24px"
+                    />
+                  </button>
+                </div>
+              );
+            })}
+            <button onClick={deleteAllKeywords} className="keyword_all_delete">
+              <img src="/icons/keyword_alldelete.svg" />
+              검색어 전체 삭제
+            </button>
           </div>
         ) : (
           popular_keyword_arr.map((el, i) => {
