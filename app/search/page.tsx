@@ -6,7 +6,6 @@ import Back_url from "@/app/_components/Back_url";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { TouchEvent, KeyboardEvent } from "react";
-import { KeyWord } from "@/app/_interface";
 
 export default ({
   searchParams,
@@ -28,7 +27,10 @@ export default ({
 
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // 최근검색어 배열
   const [keywords, setKeywords] = useState<string[]>([]);
+
+  // 검색어를 입력하면 최근검색어 배열과 localstorage에 저장하는 함수
   const doSearch = (
     e: KeyboardEvent<HTMLInputElement> | TouchEvent<HTMLAnchorElement>
   ) => {
@@ -38,8 +40,7 @@ export default ({
       if (inputRef.current!.value === "") {
         return;
       } else {
-        console.log(inputRef.current!.value);
-        let new_keywords: KeyWord[] = [inputRef.current!.value, ...keywords];
+        let new_keywords = [inputRef.current!.value, ...keywords];
         setKeywords(new_keywords);
         localStorage.setItem("$KEYWORDS", JSON.stringify(new_keywords));
         inputRef.current!.value = "";
@@ -47,17 +48,19 @@ export default ({
     }
   };
 
+  // localstorage에 저장된 최근검색어를 꺼내와 최근검색어 배열로 세팅하는 함수
   const getKeywords = () => {
     let localData = JSON.parse(localStorage.getItem("$KEYWORDS") ?? "[]");
     setKeywords(localData);
   };
-
   useEffect(() => getKeywords(), []);
 
+  // 모든 최근검색어를 제거하는 함수
   const deleteAllKeywords = () => {
     localStorage.removeItem("$KEYWORDS");
   };
 
+  // 특정 최근검색어를 제거하는 함수
   const deleteKeyword = (value: string) => {
     let new_keywords = keywords.filter((x) => x !== value);
     setKeywords(new_keywords);
