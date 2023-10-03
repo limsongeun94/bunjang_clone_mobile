@@ -1,53 +1,65 @@
 @import "./global.scss";
 
 .search_page {
-  .search_pad {
-    width: 100%;
-    height: 3.125rem;
-    position: relative;
-    padding: 0.5rem 1rem 0.5rem 0px;
-    border-bottom: 1px solid rgb(234, 233, 241);
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
+  .search_pad_wrap {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: white;
+    z-index: 9999;
 
-    button {
-      width: 56px;
-      height: 36px;
-      text-align: center;
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-    }
-
-    input {
+    .search_pad {
       width: 100%;
-      height: 36px;
-      padding: 0px 35px 0px 10px;
-      border: 1.5px solid rgb(247, 0, 0);
-      border-radius: 3px;
-      font-size: 0.875rem;
-      line-height: 20px;
-    }
-
-    a {
+      height: 3.125rem;
+      position: relative;
+      padding: 0.5rem 1rem 0.5rem 0px;
+      border-bottom: 1px solid rgb(234, 233, 241);
       display: flex;
-      position: absolute;
-      -webkit-box-pack: center;
-      justify-content: center;
-      -webkit-box-align: center;
       align-items: center;
-      top: 50%;
-      right: 1rem;
-      width: 36px;
-      height: 36px;
-      margin-top: -18px;
-      cursor: pointer;
+      box-sizing: border-box;
+
+      button {
+        width: 56px;
+        height: 36px;
+        text-align: center;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      input {
+        width: 100%;
+        height: 36px;
+        padding: 0px 35px 0px 10px;
+        border: 1.5px solid rgb(247, 0, 0);
+        border-radius: 3px;
+        font-size: 0.875rem;
+        line-height: 20px;
+      }
+
+      a {
+        display: flex;
+        position: absolute;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        top: 50%;
+        right: 1rem;
+        width: 36px;
+        height: 36px;
+        margin-top: -18px;
+        cursor: pointer;
+      }
     }
   }
 
   .search_word_container {
     .search_word_tab_wrap {
+      position: sticky;
+      top: 3.125rem;
+      left: 0;
+      background-color: white;
       border-bottom: 1px solid rgb(238, 238, 238);
       display: flex;
 

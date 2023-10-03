@@ -58,6 +58,7 @@ export default ({
   // 모든 최근검색어를 제거하는 함수
   const deleteAllKeywords = () => {
     localStorage.removeItem("$KEYWORDS");
+    setKeywords([]);
   };
 
   // 특정 최근검색어를 제거하는 함수
@@ -69,21 +70,23 @@ export default ({
 
   return (
     <div className="search_page">
-      <div className="search_pad">
-        <Back_url>
-          <button>
-            <img src="/icons/back.svg" />
-          </button>
-        </Back_url>
-        <input
-          onKeyUp={doSearch}
-          placeholder="검색어를 입력해주세요"
-          maxLength={40}
-          ref={inputRef}
-        />
-        <a onTouchEnd={doSearch}>
-          <img src="/icons/search_red.svg" width="15px" height="15px" />
-        </a>
+      <div className="search_pad_wrap">
+        <div className="search_pad">
+          <Back_url>
+            <button>
+              <img src="/icons/back.svg" />
+            </button>
+          </Back_url>
+          <input
+            onKeyUp={doSearch}
+            placeholder="검색어를 입력해주세요"
+            maxLength={40}
+            ref={inputRef}
+          />
+          <a onTouchEnd={doSearch}>
+            <img src="/icons/search_red.svg" width="15px" height="15px" />
+          </a>
+        </div>
       </div>
       <div className="search_word_container">
         <div className="search_word_tab_wrap">

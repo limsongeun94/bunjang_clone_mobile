@@ -3,6 +3,7 @@ import "@/app/_styles/product.scss";
 import Carousel from "@/app/_components/Carousel_product";
 import Footer from "@/app/_components/Footer";
 import Back_url from "@/app/_components/Back_url";
+import Link from "next/link";
 
 export default async ({ params }: { params: { product_id: string } }) => {
   const res = await fetch(
@@ -184,7 +185,7 @@ export default async ({ params }: { params: { product_id: string } }) => {
         <pre className="product_explain">{data.description}</pre>
         <ul className="product_etc_explain">
           <li>
-            거래지역{" "}
+            거래지역
             <span>
               <svg width="15px" height="15px" viewBox="0 0 30 30">
                 <g
@@ -240,14 +241,30 @@ export default async ({ params }: { params: { product_id: string } }) => {
             </span>
           </li>
           <li>
-            카테고리 <span className="red">{data.category.name}</span>
+            카테고리{" "}
+            <Link
+              href={`/categories/${data.category.id}`}
+              className="link red"
+              style={{ marginLeft: "10px" }}
+            >
+              {data.category.name}
+            </Link>
           </li>
           <li>
-            상품태그{" "}
-            <span className={data.keywords.length === 0 ? "" : `red`}>
+            상품태그
+            <span className="tag_wrapper">
               {data.keywords.length === 0
                 ? "정보없음"
-                : data.keywords.map((el: string) => "#" + el).join(" ")}
+                : data.keywords.map((el: string) => {
+                    return (
+                      <Link
+                        href={`/search/products?q=${el}`}
+                        className="link red"
+                      >
+                        #{el}
+                      </Link>
+                    );
+                  })}
             </span>
           </li>
         </ul>

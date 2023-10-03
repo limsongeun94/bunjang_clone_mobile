@@ -140,7 +140,9 @@
         margin-bottom: 15px;
         padding-left: 12px;
         display: flex;
-        align-items: center;
+        align-items: start;
+        white-space: nowrap;
+        vertical-align: top;
 
         &::before {
           content: "";
@@ -158,8 +160,14 @@
           margin-left: 10px;
         }
 
+        .tag_wrapper {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
         .red {
           color: $color-red;
+          margin-right: 4px;
         }
       }
     }
