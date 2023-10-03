@@ -44,11 +44,17 @@ export default async function Home() {
     <div className="index_page">
       <Category />
       <div className="search">
-        <input type="text" placeholder="찾고 싶은 상품을 검색해보세요" />
-        <button>
+        <Link href="/search?tab=recent" className="link input_wrap">
+          <input
+            type="text"
+            className="input_wrap"
+            placeholder="찾고 싶은 상품을 검색해보세요"
+          />
+        </Link>
+        <Link className="btn32" href="/search?tab=recent">
           <img src="./icons/search.svg" />
-        </button>
-        <button>
+        </Link>
+        <button className="btn32">
           <img src="./icons/zzim.svg" />
         </button>
       </div>
