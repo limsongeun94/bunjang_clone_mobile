@@ -38,7 +38,7 @@ export default ({ product }: PropsType) => {
           </strong>
           <span>개</span>
         </div>
-        <button className="view_filter" onClick={changeViewType}>
+        <button className="view_filter" onTouchEnd={changeViewType}>
           {colType === "three" ? (
             <img src="/icons/oneCol_btn.svg" width="15px" height="15px" />
           ) : colType === "one" ? (
