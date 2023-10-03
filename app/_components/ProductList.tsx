@@ -4,6 +4,7 @@ import "@/app/_styles/index.scss";
 import "@/app/_styles/productlist.scss";
 import { useState, useEffect } from "react";
 import type { Product } from "@/app/_interface/index";
+import Link from "next/link";
 
 type PropsType = {
   product: {
@@ -51,7 +52,11 @@ export default ({ product }: PropsType) => {
         <div className="threeCol_page">
           {product.list.map((product) => {
             return (
-              <div key={product.pid} className="product_wrapper">
+              <Link
+                href={`/products/${product.pid}`}
+                key={product.pid}
+                className="link product_wrapper"
+              >
                 <div className="product_img_wrapper">
                   <img src={product.product_image.replace("{res}", "354")} />
                 </div>
@@ -64,7 +69,7 @@ export default ({ product }: PropsType) => {
                   </div>
                   <div className="product_title">{product.name}</div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
@@ -72,7 +77,11 @@ export default ({ product }: PropsType) => {
         <div className="oneCol_page">
           {product.list.map((product) => {
             return (
-              <div key={product.pid} className="product_wrapper">
+              <Link
+                href={`/products/${product.pid}`}
+                key={product.pid}
+                className="link product_wrapper"
+              >
                 <div className="product_img_wrapper">
                   <img src={product.product_image.replace("{res}", "354")} />
                 </div>
@@ -104,7 +113,7 @@ export default ({ product }: PropsType) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
@@ -112,7 +121,11 @@ export default ({ product }: PropsType) => {
         <div className="twoCol_page">
           {product.list.map((product) => {
             return (
-              <div key={product.pid} className="product_wrapper">
+              <Link
+                href={`/products/${product.pid}`}
+                key={product.pid}
+                className="link product_wrapper"
+              >
                 <div className="product_img_wrapper">
                   <img src={product.product_image.replace("{res}", "354")} />
                 </div>
@@ -125,7 +138,7 @@ export default ({ product }: PropsType) => {
                   </div>
                   <div className="product_title">{product.name}</div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
