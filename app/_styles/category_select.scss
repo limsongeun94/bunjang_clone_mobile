@@ -39,4 +39,23 @@
       }
     }
   }
+
+  .category_list_wapper {
+    .category_list_header {
+      padding: 15px;
+      font-size: 15px;
+      background-color: rgb(245, 245, 245);
+    }
+
+    .category_list {
+      .category_list_item {
+        border-bottom: 1px solid rgb(238, 238, 238);
+        padding: 0px 15px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+    }
+  }
 }

@@ -38,6 +38,14 @@ export default () => {
     ]);
   };
 
+  // "main" | "category" | "tag" | "explain" | "location" | "search_location" | "etc"
+  const [viewMode, setViewMode] = useState("main");
+
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("카테고리");
+  const [tag, setTag] = useState(["#연관태그입력"]);
+  const [explain, setExplain] = useState("상품설명");
+
   return (
     <div className="product_new_page">
       <div className="product_new_header">
@@ -57,7 +65,7 @@ export default () => {
           <h1>상품등록</h1>
         </div>
       </div>
-      <form className="product_new_form">
+      <div className="product_new_form">
         <div className="product_img_container">
           <div className="input_div">
             <input
@@ -82,16 +90,53 @@ export default () => {
         <div className="form_wrapper">
           <label className="product_name">
             <span className="required">*</span>
-            <input type="text" placeholder="상품명" maxLength={40} value="" />
+            <input
+              type="text"
+              placeholder="상품명"
+              maxLength={40}
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+            />
           </label>
-          <button type="button" className="product_category">
+          <button
+            type="button"
+            className="product_BTN"
+            onTouchEnd={() => setViewMode("category")}
+          >
             <span className="required">*</span>
-            <span>카테고리</span>
+            <span className={category === "카테고리" ? "gray" : "black"}>
+              {category}
+            </span>
             <img src="/icons/right_arrow.svg" />
           </button>
-          <Category_select />
+          <Category_select
+            viewMode={viewMode}
+            setViewMode={setViewMode}
+            setCategory={setCategory}
+          />
+          <button
+            type="button"
+            className="product_BTN"
+            onTouchEnd={() => setViewMode("tag")}
+          >
+            <span className={tag[0] === "#연관태그입력" ? "gray" : "black"}>
+              {tag}
+            </span>
+            <img src="/icons/right_arrow.svg" />
+          </button>
+          <button
+            type="button"
+            className="product_BTN"
+            onTouchEnd={() => setViewMode("explain")}
+          >
+            <span className="required">*</span>
+            <span className={explain === "상품설명" ? "gray" : "black"}>
+              {explain}
+            </span>
+            <img src="/icons/right_arrow.svg" />
+          </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
