@@ -4,6 +4,7 @@ import "@/app/_styles/index.scss";
 import "@/app/_styles/product_new.scss";
 import Back_url from "@/app/_components/Back_url";
 import Category_select from "@/app/_components/Category_select";
+import Tag from "@/app/_components/Tag";
 import { useEffect, useState } from "react";
 
 export default () => {
@@ -43,8 +44,8 @@ export default () => {
 
   const [name, setName] = useState("");
   const [category, setCategory] = useState("카테고리");
-  const [tag, setTag] = useState(["#연관태그입력"]);
-  const [explain, setExplain] = useState("상품설명");
+  const [tag, setTag] = useState<string[]>([]);
+  const [explain, setExplain] = useState("");
 
   return (
     <div className="product_new_page">
@@ -119,19 +120,25 @@ export default () => {
             className="product_BTN"
             onTouchEnd={() => setViewMode("tag")}
           >
-            <span className={tag[0] === "#연관태그입력" ? "gray" : "black"}>
-              {tag}
+            <span className={tag.length === 0 ? "gray" : "black"}>
+              {tag.length === 0 ? "#연관태그입력" : tag}
             </span>
             <img src="/icons/right_arrow.svg" />
           </button>
+          <Tag
+            viewMode={viewMode}
+            setViewMode={setViewMode}
+            tag={tag}
+            setTag={setTag}
+          />
           <button
             type="button"
             className="product_BTN"
             onTouchEnd={() => setViewMode("explain")}
           >
             <span className="required">*</span>
-            <span className={explain === "상품설명" ? "gray" : "black"}>
-              {explain}
+            <span className={explain.length === 0 ? "gray" : "black"}>
+              {explain.length === 0 ? "상품설명" : explain}
             </span>
             <img src="/icons/right_arrow.svg" />
           </button>

@@ -1,0 +1,96 @@
+@import "./global.scss";
+
+.tag_component {
+  width: 100%;
+
+  .tag_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    button {
+      width: 50px;
+      height: 50px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 1.125rem;
+    }
+  }
+
+  .tag_input {
+    position: relative;
+    // margin-top: 56px;
+    padding-top: 1rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgb(234, 233, 241);
+
+    .taglist {
+      display: flex;
+
+      div {
+        background: rgb(246, 246, 246);
+        height: 2rem;
+        border-radius: 1rem;
+        padding: 0.25rem 0.375rem;
+        margin-left: 0.875rem;
+        display: flex;
+        align-items: center;
+
+        button {
+          background-color: transparent;
+          border: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      overflow: auto;
+      font-size: 0.875rem;
+      padding: 0px 1.5rem;
+      border: 0px;
+      background-color: transparent;
+      outline: none;
+      resize: none;
+      text-indent: 0.5rem;
+      z-index: 1;
+      appearance: none;
+      border: 1px solid black;
+    }
+  }
+
+  .tag_description {
+    padding: 15px 10px;
+    color: rgb(136, 136, 136);
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+
+      li {
+        margin-bottom: 0.25rem;
+        display: flex;
+
+        &::before {
+          content: "- ";
+        }
+
+        p {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+  }
+}

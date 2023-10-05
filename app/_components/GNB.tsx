@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import "../_styles/global.scss";
 import "../_styles/gnb.scss";
 
 export default () => {
+  const router = useRouter();
   const pathname = usePathname();
 
   return (
@@ -13,7 +14,10 @@ export default () => {
       <div
         className={pathname === "/" ? "index_homeBtn" : "myshop_homeBtn"}
       ></div>
-      <div className="regiBtn"></div>
+      <div
+        onTouchEnd={() => router.push("/products/new")}
+        className="regiBtn"
+      ></div>
       <div
         className={pathname === "/" ? "index_myshopBtn" : "myshop_myshopBtn"}
       ></div>
