@@ -15,7 +15,7 @@ export default () => {
         className={pathname === "/" ? "index_homeBtn" : "myshop_homeBtn"}
       ></div>
       <div
-        onTouchEnd={() => router.push("/products/new")}
+        onClick={() => router.push("/products/new")}
         className="regiBtn"
       ></div>
       <div

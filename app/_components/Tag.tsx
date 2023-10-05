@@ -1,6 +1,8 @@
 import "../_styles/global.scss";
 import "../_styles/tag.scss";
 import { KeyboardEvent } from "react";
+import TextareaAutosize from "react-textarea-autosize";
+import { useEffect, useState, useRef } from "react";
 
 type ModalProps = {
   viewMode: string;
@@ -10,6 +12,8 @@ type ModalProps = {
 };
 
 export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
+  const ref = useRef<HTMLTextAreaElement>(null);
+
   const madeTagList = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.nativeEvent.isComposing) return;
 
@@ -19,16 +23,20 @@ export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
     if (e.code === "Space") {
       if (tag.some((el) => el === newTag)) {
         (e.target as HTMLInputElement).value = "";
+        return;
       } else if (newTag === "") {
         return;
+      } else if (newTag.length > 9) {
+        (e.target as HTMLInputElement).value = "";
+        return;
       } else {
-        setTag([...tag, "#" + newTag]);
+        setTag([...tag, newTag]);
         (e.target as HTMLInputElement).value = "";
       }
     }
   };
 
-  console.log(tag);
+  const [value, setValue] = useState("");
 
   return (
     <div
@@ -37,7 +45,7 @@ export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
       }`}
     >
       <div className="tag_header">
-        <button onTouchEnd={() => setViewMode("main")}>
+        <button onClick={() => setViewMode("main")}>
           <img src="/icons/back.svg" />
         </button>
         <h1>연관태그</h1>
@@ -50,7 +58,7 @@ export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
           {tag.map((el, i) => {
             return (
               <div key={i}>
-                {el}
+                #{el}
                 <button>
                   <img src="/icons/tag_delete.svg" width="20px" height="20px" />
                 </button>
@@ -59,11 +67,19 @@ export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
           })}
         </div>
         <input onKeyUp={(e) => madeTagList(e)} />
+        <TextareaAutosize
+          minRows={1}
+          ref={ref}
+          onChange={(e) => setValue(e.target.value)}
+          value={tag + value}
+        >
+          {tag.map((el) => "#" + el).join(" ")}
+        </TextareaAutosize>
       </div>
       <div className="tag_description">
         <ul>
           <li>
-            <p>태그는 띄어쓰기로 구분되며 최대 9자까지 입력할 수 있습니다.</p>
+            <p>태그는 띄어쓰기로 등록되며 최대 9자까지 입력할 수 있습니다.</p>
           </li>
           <li>
             <p>

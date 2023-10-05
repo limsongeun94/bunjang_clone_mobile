@@ -5,7 +5,7 @@ import "@/app/_styles/search.scss";
 import Back_url from "@/app/_components/Back_url";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
-import { TouchEvent, KeyboardEvent } from "react";
+import { TouchEvent, MouseEvent } from "react";
 import { useRouter } from "next/navigation";
 
 export default ({
@@ -40,11 +40,12 @@ export default ({
 
   // 검색어를 입력하면 최근검색어 배열과 localstorage에 저장하는 함수
   const doSearch = (
-    e: KeyboardEvent<HTMLInputElement> | TouchEvent<HTMLAnchorElement>
+    e: KeyboardEvent<HTMLInputElement> | MouseEvent<HTMLImageElement>
   ) => {
     const { key } = e as React.KeyboardEvent<HTMLInputElement>;
-    const { type } = e as TouchEvent<HTMLAnchorElement>;
-    if (key === "Enter" || type === "touchend") {
+    const { button } = e as MouseEvent<HTMLImageElement>;
+    console.log(e);
+    if (key === "Enter" || button === 0) {
       if (inputRef.current!.value === "") {
         return;
       } else {
@@ -94,7 +95,7 @@ export default ({
             ref={inputRef}
             className="search_input"
           />
-          <a onTouchEnd={doSearch}>
+          <a onClick={doSearch}>
             <img src="/icons/search_red.svg" width="15px" height="15px" />
           </a>
         </div>
@@ -128,7 +129,7 @@ export default ({
                   className="link recent_search_word"
                 >
                   <span>{el}</span>
-                  <button onTouchEnd={(e) => deleteKeyword(el, e)}>
+                  <button onClick={(e) => deleteKeyword(el, e)}>
                     <img
                       src="/icons/keyword_delete.svg"
                       width="24px"
@@ -138,10 +139,7 @@ export default ({
                 </Link>
               );
             })}
-            <button
-              onTouchEnd={deleteAllKeywords}
-              className="keyword_all_delete"
-            >
+            <button onClick={deleteAllKeywords} className="keyword_all_delete">
               <img src="/icons/keyword_alldelete.svg" />
               검색어 전체 삭제
             </button>

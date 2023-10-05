@@ -38,7 +38,7 @@ export default ({ viewMode, setViewMode, setCategory }: ModalProps) => {
     >
       <div className="category_select_header">
         <div className="category_select_header_wrapper">
-          <button onTouchEnd={() => setViewMode("main")}>
+          <button onClick={() => setViewMode("main")}>
             <svg width="20" height="20" viewBox="0 0 20 20">
               <g fill="#1E1D29">
                 <path
@@ -57,7 +57,7 @@ export default ({ viewMode, setViewMode, setCategory }: ModalProps) => {
           {category_list.map((el, i) => {
             return (
               <div
-                onTouchEnd={() => {
+                onClick={() => {
                   setCategory(el);
                   setViewMode("main");
                 }}
