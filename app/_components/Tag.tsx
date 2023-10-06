@@ -37,6 +37,12 @@ export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
   };
 
   const [value, setValue] = useState("");
+  const showValue = (value: string) => {
+    const newTag = tag.map((el) => "#" + el).join(" ");
+    return newTag + value;
+  };
+
+  console.log(tag);
 
   return (
     <div
@@ -71,10 +77,8 @@ export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
           minRows={1}
           ref={ref}
           onChange={(e) => setValue(e.target.value)}
-          value={tag + value}
-        >
-          {tag.map((el) => "#" + el).join(" ")}
-        </TextareaAutosize>
+          value={showValue(value)}
+        ></TextareaAutosize>
       </div>
       <div className="tag_description">
         <ul>

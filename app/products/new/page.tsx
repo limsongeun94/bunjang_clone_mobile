@@ -6,6 +6,7 @@ import Back_url from "@/app/_components/Back_url";
 import Category_select from "@/app/_components/Category_select";
 import Tag from "@/app/_components/Tag";
 import Description from "@/app/_components/Description";
+import ETC from "@/app/_components/ETC";
 import { useEffect, useState } from "react";
 
 export default () => {
@@ -49,6 +50,9 @@ export default () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [shipfeeInclude, setShipfeeInclude] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [used, setUsed] = useState(true);
+  const [exchangeable, setExchangeable] = useState(false);
 
   // input에 천원 단위(,) 넣는 함수
   const addComma = (price: string) => {
@@ -56,7 +60,7 @@ export default () => {
     return returnString;
   };
 
-  // input에 천원 단위(,) 넣는 함수
+  // input에 천원 단위(,) 넣는 함수 (input에 ,를 입력했으면 모두 지워주는 함수)
   const onChangePoints = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target as HTMLInputElement;
     let str = value.replaceAll(",", "");
@@ -241,6 +245,42 @@ export default () => {
               </label>
             </div>
           </label>
+          <button
+            type="button"
+            className="product_BTN"
+            onClick={() => setViewMode("location")}
+          >
+            <span style={{ display: "flex", alignItems: "center" }}>
+              <img
+                src="/icons/upload_location.svg"
+                style={{ marginRight: "3px" }}
+              />
+              <span>지역설정안함</span>
+            </span>
+            <img src="/icons/right_arrow.svg" />
+          </button>
+          <button
+            type="button"
+            className="product_BTN etc_BTN"
+            onClick={() => setViewMode("etc")}
+          >
+            <div className="text_wrapper">
+              <span>수량</span>
+              <span>중고상품</span>
+              <span>교환불가</span>
+            </div>
+            <img src="/icons/right_arrow.svg" />
+          </button>
+          <ETC
+            viewMode={viewMode}
+            setViewMode={setViewMode}
+            quantity={quantity}
+            setQuantity={setQuantity}
+            used={used}
+            setUsed={setUsed}
+            exchangeable={exchangeable}
+            setExchangeable={setExchangeable}
+          />
         </div>
       </div>
     </div>

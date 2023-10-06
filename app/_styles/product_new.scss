@@ -246,6 +246,24 @@
           }
         }
       }
+
+      .etc_BTN {
+        .text_wrapper {
+          span {
+            display: inline-block;
+            font-size: 0.875rem;
+            &::after {
+              display: inline-block;
+              margin: 0px 0.25rem;
+              color: rgb(195, 194, 204);
+              content: "|";
+            }
+            &:last-child::after {
+              content: "";
+            }
+          }
+        }
+      }
     }
   }
 }
