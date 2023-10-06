@@ -42,8 +42,6 @@ export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
     return newTag + value;
   };
 
-  console.log(tag);
-
   return (
     <div
       className={`tag_component modal_bg ${

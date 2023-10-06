@@ -14,8 +14,6 @@ export default async ({
   );
   const data = await res.json();
 
-  console.log();
-
   return (
     <div className="search_page">
       <div className="search_pad_wrap">

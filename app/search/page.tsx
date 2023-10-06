@@ -5,7 +5,7 @@ import "@/app/_styles/search.scss";
 import Back_url from "@/app/_components/Back_url";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
-import { TouchEvent, MouseEvent } from "react";
+import { KeyboardEvent, MouseEvent } from "react";
 import { useRouter } from "next/navigation";
 
 export default ({
@@ -35,16 +35,16 @@ export default ({
   // 검색 결과로 이동하는 함수
   const goSearchResult = (value: string) => {
     router.push(`/search/products?q=${value}`);
-    console.log(value);
+    value;
   };
 
   // 검색어를 입력하면 최근검색어 배열과 localstorage에 저장하는 함수
   const doSearch = (
-    e: KeyboardEvent<HTMLInputElement> | MouseEvent<HTMLImageElement>
+    e: KeyboardEvent<HTMLInputElement> | MouseEvent<HTMLAnchorElement>
   ) => {
-    const { key } = e as React.KeyboardEvent<HTMLInputElement>;
-    const { button } = e as MouseEvent<HTMLImageElement>;
-    console.log(e);
+    const { key } = e as KeyboardEvent<HTMLInputElement>;
+    const { button } = e as MouseEvent<HTMLAnchorElement>;
+
     if (key === "Enter" || button === 0) {
       if (inputRef.current!.value === "") {
         return;
@@ -72,7 +72,10 @@ export default ({
   };
 
   // 특정 최근검색어를 제거하는 함수
-  const deleteKeyword = (value: string, e: TouchEvent<HTMLButtonElement>) => {
+  const deleteKeyword = (
+    value: string,
+    e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) => {
     e.stopPropagation();
     let new_keywords = keywords.filter((x) => x !== value);
     setKeywords(new_keywords);

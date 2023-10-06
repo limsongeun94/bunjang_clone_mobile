@@ -118,7 +118,7 @@
     }
 
     .form_wrapper {
-      padding: 0px 1rem 15.5rem;
+      padding: 0px 1rem;
 
       .required {
         position: absolute;
@@ -264,6 +264,53 @@
           }
         }
       }
+    }
+  }
+
+  .submit_wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 0px 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+
+    .bunpay_btn {
+      flex: 1 1 0%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px 15px;
+      border-radius: 5px;
+      border: 1px solid rgb(216, 12, 24);
+      font-size: 14px;
+      font-weight: bold;
+      background-color: white;
+
+      div {
+        display: flex;
+        align-items: center;
+
+        svg {
+          margin-left: 4px;
+        }
+      }
+    }
+
+    .submit_btn {
+      height: 50px;
+      width: 74px;
+      margin-left: 6px;
+      color: rgb(255, 255, 255);
+      background-color: rgb(216, 12, 24);
+      border-radius: 5px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
     }
   }
 }
