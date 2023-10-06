@@ -50,7 +50,7 @@ export default (props: ModalProps) => {
               name="quantity"
               min="1"
               max="999"
-              onChange={(e) => setQuantity(e.target.value)}
+              onChange={(e) => setQuantity(parseInt(e.target.value))}
               value={quantity}
             />
           </label>
