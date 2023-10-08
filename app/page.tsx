@@ -162,6 +162,7 @@ export default async function Home() {
         })}
       </section>
       <Footer />
+      <div style={{ height: "3.5rem" }} />
       <div className="gnb_container">
         <GNB />
       </div>

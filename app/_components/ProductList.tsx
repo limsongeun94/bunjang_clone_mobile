@@ -7,16 +7,22 @@ import type { Product } from "@/app/_interface/index";
 import Link from "next/link";
 
 type PropsType = {
-  product: {
+  initial_product: {
     page: number;
     size: number;
     list: Product[];
     total: number;
     pages: number;
   };
+  productPage: number;
+  setProductPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export default ({ product }: PropsType) => {
+export default ({
+  initial_product,
+  productPage,
+  setProductPage,
+}: PropsType) => {
   const [colType, setColType] = useState("three"); // "three" | "one" | "two"
 
   const changeViewType = () => {
@@ -34,7 +40,9 @@ export default ({ product }: PropsType) => {
       <div className="filter">
         <div className="product_count">
           <strong>
-            {product.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            {initial_product.total
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </strong>
           <span>개</span>
         </div>
@@ -50,7 +58,7 @@ export default ({ product }: PropsType) => {
       </div>
       {colType === "three" ? (
         <div className="threeCol_page">
-          {product.list.map((product) => {
+          {initial_product.list.map((product) => {
             return (
               <Link
                 href={`/products/${product.pid}`}
@@ -75,7 +83,7 @@ export default ({ product }: PropsType) => {
         </div>
       ) : colType === "one" ? (
         <div className="oneCol_page">
-          {product.list.map((product) => {
+          {initial_product.list.map((product) => {
             return (
               <Link
                 href={`/products/${product.pid}`}
@@ -119,7 +127,7 @@ export default ({ product }: PropsType) => {
         </div>
       ) : (
         <div className="twoCol_page">
-          {product.list.map((product) => {
+          {initial_product.list.map((product) => {
             return (
               <Link
                 href={`/products/${product.pid}`}
@@ -143,7 +151,10 @@ export default ({ product }: PropsType) => {
           })}
         </div>
       )}
-      <button className="more_view">
+      <button
+        onClick={() => setProductPage(productPage + 1)}
+        className="more_view"
+      >
         <img src="/icons/more_view.svg" width="15px" height="15px" />
         상품 더보기
       </button>

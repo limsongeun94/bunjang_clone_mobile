@@ -14,32 +14,11 @@ type ModalProps = {
 export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
   const ref = useRef<HTMLTextAreaElement>(null);
 
-  const madeTagList = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.nativeEvent.isComposing) return;
-
-    // String.trim() : 문자열의 시작과 끝에 공백을 제거해줌.
-    const newTag = (e.target as HTMLInputElement).value.trim();
-
+  const text = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.code === "Space") {
-      if (tag.some((el) => el === newTag)) {
-        (e.target as HTMLInputElement).value = "";
-        return;
-      } else if (newTag === "") {
-        return;
-      } else if (newTag.length > 9) {
-        (e.target as HTMLInputElement).value = "";
-        return;
-      } else {
-        setTag([...tag, newTag]);
-        (e.target as HTMLInputElement).value = "";
-      }
+      ref.current!.value = ref.current!.value.replaceAll(" ", " #");
+      ref.current!.value = ref.current!.value.replaceAll("##", "#");
     }
-  };
-
-  const [value, setValue] = useState("");
-  const showValue = (value: string) => {
-    const newTag = tag.map((el) => "#" + el).join(" ");
-    return newTag + value;
   };
 
   return (
@@ -70,12 +49,10 @@ export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
             );
           })}
         </div>
-        <input onKeyUp={(e) => madeTagList(e)} />
         <TextareaAutosize
           minRows={1}
           ref={ref}
-          onChange={(e) => setValue(e.target.value)}
-          value={showValue(value)}
+          onKeyUp={text}
         ></TextareaAutosize>
       </div>
       <div className="tag_description">
