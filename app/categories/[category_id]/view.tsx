@@ -22,12 +22,12 @@ type InitialData = {
 
 export default ({ initial_product, categoryId, categoryName }: InitialData) => {
   const [productPage, setProductPage] = useState(2);
-  const [productList, setProductList] = useState<Array<Product>>([]);
+  const [productList, setProductList] = useState<Product[]>([]);
 
   const showMoreProduct = () => {
     axios
       .get("/api/product", {
-        params: { page: productPage, size: 50, category: categoryId },
+        params: { page: productPage, size: 60, category: categoryId },
       })
       .then((res) => {
         setProductList([...productList, ...res.data.list]);
@@ -37,8 +37,6 @@ export default ({ initial_product, categoryId, categoryName }: InitialData) => {
   useEffect(() => {
     showMoreProduct();
   }, [productPage]);
-
-  console.log(productPage);
 
   return (
     <div className="category_page">
@@ -71,6 +69,7 @@ export default ({ initial_product, categoryId, categoryName }: InitialData) => {
       </div>
       <ProductList
         initial_product={initial_product}
+        more_productList={productList}
         productPage={productPage}
         setProductPage={setProductPage}
       />

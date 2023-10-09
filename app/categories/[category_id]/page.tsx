@@ -3,7 +3,7 @@ import "@/app/_styles/category.scss";
 import ProductList from "@/app/_components/ProductList";
 import Back_url from "@/app/_components/Back_url";
 
-import View from "./_components/view";
+import View from "./view";
 
 export default async ({ params }: { params: { category_id: string } }) => {
   const res = await fetch(

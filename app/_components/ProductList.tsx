@@ -14,12 +14,14 @@ type PropsType = {
     total: number;
     pages: number;
   };
+  more_productList: Product[];
   productPage: number;
   setProductPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export default ({
   initial_product,
+  more_productList,
   productPage,
   setProductPage,
 }: PropsType) => {
@@ -128,6 +130,101 @@ export default ({
       ) : (
         <div className="twoCol_page">
           {initial_product.list.map((product) => {
+            return (
+              <Link
+                href={`/products/${product.pid}`}
+                key={product.pid}
+                className="link product_wrapper"
+              >
+                <div className="product_img_wrapper">
+                  <img src={product.product_image.replace("{res}", "354")} />
+                </div>
+                <div className="product_text_wrapper">
+                  <div className="product_price">
+                    {product.price
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    <span>원</span>
+                  </div>
+                  <div className="product_title">{product.name}</div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      )}
+      {colType === "three" ? (
+        <div className="threeCol_page">
+          {more_productList.map((product) => {
+            return (
+              <Link
+                href={`/products/${product.pid}`}
+                key={product.pid}
+                className="link product_wrapper"
+              >
+                <div className="product_img_wrapper">
+                  <img src={product.product_image.replace("{res}", "354")} />
+                </div>
+                <div className="product_text_wrapper">
+                  <div className="product_price">
+                    {product.price
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    <span>원</span>
+                  </div>
+                  <div className="product_title">{product.name}</div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      ) : colType === "one" ? (
+        <div className="oneCol_page">
+          {more_productList.map((product) => {
+            return (
+              <Link
+                href={`/products/${product.pid}`}
+                key={product.pid}
+                className="link product_wrapper"
+              >
+                <div className="product_img_wrapper">
+                  <img src={product.product_image.replace("{res}", "354")} />
+                </div>
+                <div className="product_text_wrapper">
+                  <div className="product_price">
+                    {product.price
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  </div>
+                  <div className="product_title">{product.name}</div>
+                  <div className="product_zzimloca">
+                    <div className="product_zzim">
+                      <img
+                        src="/icons/product_img_heart.svg"
+                        width="12px"
+                        height="12px"
+                      />
+                      <span>{product.num_faved}</span>
+                    </div>
+                    <div className="product_location">
+                      <img
+                        src="/icons/location.svg"
+                        width="11px"
+                        height="12px"
+                      />
+                      <span>
+                        {product.location ? product.location : "위치없음"}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="twoCol_page">
+          {more_productList.map((product) => {
             return (
               <Link
                 href={`/products/${product.pid}`}

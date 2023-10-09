@@ -2,7 +2,7 @@ import "../_styles/global.scss";
 import "../_styles/tag.scss";
 import { KeyboardEvent } from "react";
 import TextareaAutosize from "react-textarea-autosize";
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 type ModalProps = {
   viewMode: string;
@@ -16,6 +16,9 @@ export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
 
   const text = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.code === "Space") {
+      if (ref.current!.value.split("#").length - 1 >= 5) {
+        ref.current!.value = ref.current!.value.slice(0, -1);
+      }
       ref.current!.value = ref.current!.value.replaceAll(" ", " #");
       ref.current!.value = ref.current!.value.replaceAll("##", "#");
     }
@@ -37,22 +40,12 @@ export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
         </button>
       </div>
       <div className="tag_input">
-        <div className="taglist">
-          {tag.map((el, i) => {
-            return (
-              <div key={i}>
-                #{el}
-                <button>
-                  <img src="/icons/tag_delete.svg" width="20px" height="20px" />
-                </button>
-              </div>
-            );
-          })}
-        </div>
         <TextareaAutosize
           minRows={1}
           ref={ref}
           onKeyUp={text}
+          placeholder="태그를 입력해주세요"
+          spellCheck={false}
         ></TextareaAutosize>
       </div>
       <div className="tag_description">

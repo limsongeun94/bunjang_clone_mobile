@@ -19,6 +19,7 @@ export default () => {
         className="regiBtn"
       ></div>
       <div
+        onClick={() => router.push("/my-shop?tab=sale")}
         className={pathname === "/" ? "index_myshopBtn" : "myshop_myshopBtn"}
       ></div>
     </nav>
