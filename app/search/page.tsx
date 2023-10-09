@@ -159,7 +159,9 @@ export default ({
                   <span className="rank">{el.rank}</span>
                   {el.name}
                 </span>
-                <span className="sell">판매</span>
+                <Link href="/products/new" className="sell link">
+                  판매
+                </Link>
               </Link>
             );
           })
