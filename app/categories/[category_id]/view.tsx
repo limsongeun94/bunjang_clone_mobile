@@ -5,7 +5,7 @@ import "@/app/_styles/category.scss";
 import ProductList from "@/app/_components/ProductList";
 import Back_url from "@/app/_components/Back_url";
 import type { Product } from "@/app/_interface/index";
-import axios from "axios";
+import axios from "@/app/_libs/axios";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -27,7 +27,7 @@ export default ({ initial_product, categoryId, categoryName }: InitialData) => {
 
   const showMoreProduct = () => {
     axios
-      .get("/api/product", {
+      .get("/product", {
         params: { page: productPage, size: 60, category: categoryId },
       })
       .then((res) => {

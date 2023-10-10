@@ -6,7 +6,7 @@ import ProductList from "@/app/_components/ProductList";
 import Back_url from "@/app/_components/Back_url";
 import Link from "next/link";
 import type { Product } from "@/app/_interface/index";
-import axios from "axios";
+import axios from "@/app/_libs/axios";
 import { useEffect, useState } from "react";
 
 type InitialData = {
@@ -26,7 +26,7 @@ export default ({ initial_product, searchId }: InitialData) => {
 
   const showMoreProduct = () => {
     axios
-      .get("/api/search", {
+      .get("/search", {
         params: { page: productPage, size: 60, keyword: searchId },
       })
       .then((res) => {

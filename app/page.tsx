@@ -10,7 +10,7 @@ import type { Product } from "@/app/_interface/index";
 import Link from "next/link";
 
 export default async function Home() {
-  const res = await fetch("http://localhost:3000/api/landing");
+  const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + "/api/landing");
   const data = await res.json();
 
   // 날짜 형식에 맞게 변환하는 함수
