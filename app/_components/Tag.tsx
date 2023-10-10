@@ -15,6 +15,14 @@ export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
   const ref = useRef<HTMLTextAreaElement>(null);
 
   const onEnterText = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter") {
+      ref.current!.value = ref.current!.value.split("\n").join(" ");
+      if (ref.current!.value.split("#").length - 1 >= 5) {
+        ref.current!.value = ref.current!.value.slice(0, -1);
+      }
+      ref.current!.value = ref.current!.value.replaceAll(" ", " #");
+      ref.current!.value = ref.current!.value.replaceAll("##", "#");
+    }
     if (e.code === "Space") {
       if (ref.current!.value.split("#").length - 1 >= 5) {
         ref.current!.value = ref.current!.value.slice(0, -1);
@@ -24,6 +32,7 @@ export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
     }
   };
 
+  // 체크 버튼을 누르면 textarea에 입력한 값이 tag에 set 되는 함수
   const onSubmit = () => {
     if (ref.current!.value.charAt(ref.current!.value.length - 1) === "#") {
       ref.current!.value = ref.current!.value.slice(0, -2);
