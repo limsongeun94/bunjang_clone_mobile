@@ -2,15 +2,17 @@
 
 .search_page {
   .search_pad_wrap {
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: white;
     z-index: 9999;
+    height: 50px;
+    width: 100%;
 
     .search_pad {
       width: 100%;
-      height: 3.125rem;
+      height: 100%;
       position: relative;
       padding: 0.5rem 1rem 0.5rem 0px;
       border-bottom: 1px solid rgb(234, 233, 241);
@@ -26,16 +28,6 @@
         border: none;
         cursor: pointer;
       }
-
-      // input {
-      //   width: 100%;
-      //   height: 36px;
-      //   padding: 0px 35px 0px 10px;
-      //   border: 1.5px solid rgb(247, 0, 0);
-      //   border-radius: 3px;
-      //   font-size: 0.875rem;
-      //   line-height: 20px;
-      // }
 
       .search_input {
         width: 100%;

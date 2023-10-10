@@ -316,6 +316,7 @@ export default () => {
           />
         </div>
       </div>
+      <div style={{ height: "50px" }} />
       <div className="submit_wrapper">
         <button
           onClick={() => setSafepay(!safepay)}

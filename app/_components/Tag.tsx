@@ -14,13 +14,32 @@ type ModalProps = {
 export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
   const ref = useRef<HTMLTextAreaElement>(null);
 
-  const text = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+  const onEnterText = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.code === "Space") {
       if (ref.current!.value.split("#").length - 1 >= 5) {
         ref.current!.value = ref.current!.value.slice(0, -1);
       }
       ref.current!.value = ref.current!.value.replaceAll(" ", " #");
       ref.current!.value = ref.current!.value.replaceAll("##", "#");
+    }
+  };
+
+  const onSubmit = () => {
+    if (ref.current!.value.charAt(ref.current!.value.length - 1) === "#") {
+      ref.current!.value = ref.current!.value.slice(0, -2);
+      let new_tag;
+      new_tag = ref.current!.value.replaceAll("#", " ");
+      new_tag = new_tag.replaceAll("  ", " ");
+      new_tag = new_tag.split(" ");
+      setTag(new_tag);
+      setViewMode("main");
+    } else {
+      let new_tag;
+      new_tag = ref.current!.value.replaceAll("#", " ");
+      new_tag = new_tag.replaceAll("  ", " ");
+      new_tag = new_tag.split(" ");
+      setTag(new_tag);
+      setViewMode("main");
     }
   };
 
@@ -35,7 +54,7 @@ export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
           <img src="/icons/back.svg" />
         </button>
         <h1>연관태그</h1>
-        <button>
+        <button onClick={onSubmit}>
           <img src="/icons/check.svg" />
         </button>
       </div>
@@ -43,7 +62,7 @@ export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
         <TextareaAutosize
           minRows={1}
           ref={ref}
-          onKeyUp={text}
+          onKeyUp={onEnterText}
           placeholder="태그를 입력해주세요"
           spellCheck={false}
         ></TextareaAutosize>
@@ -51,7 +70,7 @@ export default ({ viewMode, setViewMode, tag, setTag }: ModalProps) => {
       <div className="tag_description">
         <ul>
           <li>
-            <p>태그는 띄어쓰기로 등록되며 최대 9자까지 입력할 수 있습니다.</p>
+            <p>태그는 띄어쓰기로 등록됩니다.</p>
           </li>
           <li>
             <p>

@@ -27,7 +27,7 @@ export default async ({ params }: { params: { product_id: string } }) => {
           </button>
         </Back_url>
         <div>
-          <button>
+          <Link href="/" className="link">
             <svg
               width="32"
               height="32"
@@ -42,8 +42,8 @@ export default async ({ params }: { params: { product_id: string } }) => {
                 ></path>
               </g>
             </svg>
-          </button>
-          <button>
+          </Link>
+          <Link href="/search?tab=recent" className="link">
             <svg width="20" height="20" viewBox="0 0 20 20">
               <path
                 fill="#fff"
@@ -51,7 +51,7 @@ export default async ({ params }: { params: { product_id: string } }) => {
                 d="M1.937 7.747a5.817 5.817 0 0 1 5.81-5.81 5.817 5.817 0 0 1 5.812 5.81 5.817 5.817 0 0 1-5.811 5.811 5.817 5.817 0 0 1-5.811-5.81M13.86 12.49a7.695 7.695 0 0 0 1.635-4.743C15.496 3.476 12.02 0 7.748 0S0 3.476 0 7.747c0 4.272 3.476 7.748 7.748 7.748a7.703 7.703 0 0 0 4.742-1.635l3.857 3.855a.966.966 0 0 0 1.369 0 .967.967 0 0 0 0-1.37l-3.855-3.855z"
               ></path>
             </svg>
-          </button>
+          </Link>
         </div>
       </div>
       <Carousel imageUrl={data.imageUrl} imageCount={data.imageCount} />
@@ -270,6 +270,7 @@ export default async ({ params }: { params: { product_id: string } }) => {
         </ul>
       </div>
       <Footer />
+      <div style={{ height: "56px" }} />
       <div className="product_trade">
         <button>번개톡</button>
         <button>번개페이 안전결제</button>

@@ -58,6 +58,7 @@ export default async function Home() {
           <img src="./icons/zzim.svg" />
         </button>
       </div>
+      <div style={{ height: "50px" }} />
       <Carousel bannerArr={banner} />
       <section className="category_section">
         <Link href="/categories/930100" className="link category_item">

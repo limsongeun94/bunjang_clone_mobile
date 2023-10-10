@@ -7,6 +7,7 @@ import Back_url from "@/app/_components/Back_url";
 import type { Product } from "@/app/_interface/index";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 type InitialData = {
   categoryId: string;
@@ -55,7 +56,7 @@ export default ({ initial_product, categoryId, categoryName }: InitialData) => {
             </button>
           </Back_url>
           <h1>{categoryName}</h1>
-          <div className="searchBtn">
+          <Link href="/search?tab=recent" className="link searchBtn">
             <svg width="20" height="20" viewBox="0 0 20 20">
               <path
                 fill="#333"
@@ -64,9 +65,10 @@ export default ({ initial_product, categoryId, categoryName }: InitialData) => {
                 className="Plx Plx--above "
               ></path>
             </svg>
-          </div>
+          </Link>
         </div>
       </div>
+      <div style={{ height: "50px" }} />
       <ProductList
         initial_product={initial_product}
         more_productList={productList}

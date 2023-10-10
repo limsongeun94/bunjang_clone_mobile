@@ -51,6 +51,7 @@ export default ({ viewMode, setViewMode, setCategory }: ModalProps) => {
           <h1>상품등록</h1>
         </div>
       </div>
+      <div style={{ height: "50px" }} />
       <div className="category_list_wapper">
         <div className="category_list_header">전체 카테고리</div>
         <div className="category_list">

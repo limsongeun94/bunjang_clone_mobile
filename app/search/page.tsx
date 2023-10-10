@@ -50,8 +50,8 @@ export default ({
         return;
       } else {
         let new_keywords = [inputRef.current!.value, ...keywords];
-        setKeywords(new_keywords);
         localStorage.setItem("$KEYWORDS", JSON.stringify(new_keywords));
+        setKeywords(new_keywords);
         goSearchResult(inputRef.current!.value);
         inputRef.current!.value = "";
       }
@@ -72,14 +72,11 @@ export default ({
   };
 
   // 특정 최근검색어를 제거하는 함수
-  const deleteKeyword = (
-    value: string,
-    e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
-  ) => {
+  const deleteKeyword = (value: string, e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     let new_keywords = keywords.filter((x) => x !== value);
-    setKeywords(new_keywords);
     localStorage.setItem("$KEYWORDS", JSON.stringify(new_keywords));
+    setKeywords(new_keywords);
   };
 
   return (
@@ -122,6 +119,7 @@ export default ({
             인기검색어
           </Link>
         </div>
+        <div style={{ height: "50px" }} />
         {searchParams?.tab === "recent" ? (
           <div>
             {keywords.map((el, i) => {

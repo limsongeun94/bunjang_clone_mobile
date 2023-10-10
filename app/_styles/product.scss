@@ -14,6 +14,7 @@
     padding: 0 10px;
     box-sizing: border-box;
 
+    a,
     button {
       width: 2rem;
       height: 2rem;
@@ -174,8 +175,7 @@
   }
 
   .product_trade {
-    position: sticky;
-    position: -webkit-sticky;
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;

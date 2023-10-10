@@ -1,7 +1,7 @@
 "use client";
 
 import "@/app/_styles/index.scss";
-import "@/app/_styles/category.scss";
+import "@/app/_styles/search.scss";
 import ProductList from "@/app/_components/ProductList";
 import Back_url from "@/app/_components/Back_url";
 import Link from "next/link";
@@ -56,11 +56,12 @@ export default ({ initial_product, searchId }: InitialData) => {
               />
             </Link>
           </div>
-          <a>
+          <Link href="/search?tab=recent" className="link">
             <img src="/icons/search_red.svg" width="15px" height="15px" />
-          </a>
+          </Link>
         </div>
       </div>
+      <div style={{ height: "50px" }} />
       <ProductList
         initial_product={initial_product}
         more_productList={productList}
