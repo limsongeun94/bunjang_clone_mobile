@@ -10,8 +10,11 @@ import type { Product } from "@/app/_interface/index";
 import Link from "next/link";
 
 export default async function Home() {
-  const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + "/api/landing");
+  const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + "/landing");
   const data = await res.json();
+  // console.log(await res.text());
+
+  // const data = { products: [] };
 
   // 날짜 형식에 맞게 변환하는 함수
   const showDate = (update_time: number): string => {

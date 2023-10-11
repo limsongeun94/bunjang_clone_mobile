@@ -10,7 +10,9 @@ export default async ({
   searchParams?: { [key: string]: string | string[] | undefined };
 }) => {
   const res = await fetch(
-    "http://localhost:3000/api/search?page=1&size=60&keyword=" + searchParams!.q
+    process.env.NEXT_PUBLIC_API_HOST +
+      "/search?page=1&size=60&keyword=" +
+      searchParams!.q
   );
   const data = await res.json();
 

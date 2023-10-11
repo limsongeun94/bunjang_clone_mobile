@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default async ({ params }: { params: { product_id: string } }) => {
   const res = await fetch(
-    "http://localhost:3000/api/product/" + params.product_id
+    process.env.NEXT_PUBLIC_API_HOST + "/product/" + params.product_id
   );
   const data = await res.json();
 
