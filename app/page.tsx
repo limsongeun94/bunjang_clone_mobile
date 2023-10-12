@@ -1,5 +1,3 @@
-// "use client";
-
 import "./_styles/global.scss";
 import "./_styles/index.scss";
 import Carousel from "./_components/Carousel_index";
@@ -8,13 +6,11 @@ import GNB from "./_components/GNB";
 import Category from "./_components/Category_nav";
 import type { Product } from "@/app/_interface/index";
 import Link from "next/link";
+import { isBrowser, isMobile } from "react-device-detect";
 
 export default async function Home() {
   const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + "/landing");
   const data = await res.json();
-  // console.log(await res.text());
-
-  // const data = { products: [] };
 
   // 날짜 형식에 맞게 변환하는 함수
   const showDate = (update_time: number): string => {
@@ -43,9 +39,21 @@ export default async function Home() {
     "./banners/keyring banner - phone.jpg",
   ];
 
+  // if (
+  //   process.env.NEXT_PUBLIC_API_HOST ===
+  //   "https://bunjang-clone-mobile.vercel.app/api"
+  // ) {
+  //   if (isBrowser) {
+  //     location.href = ""
+  //   }
+  // }
+
+  console.log(process.env.NODE_ENV);
+
   return (
     <div className="index_page">
       <Category />
+      {process.env.NODE_ENV}
       <div className="search">
         <Link href="/search?tab=recent" className="link input_wrap">
           <input
