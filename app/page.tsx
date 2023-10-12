@@ -53,7 +53,7 @@ export default async function Home() {
   return (
     <div className="index_page">
       <Category />
-      {process.env.NODE_ENV}
+      <div>{process.env.NODE_ENV}</div>
       <div className="search">
         <Link href="/search?tab=recent" className="link input_wrap">
           <input
