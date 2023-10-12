@@ -39,18 +39,6 @@ export default async function Home() {
     "./banners/keyring banner - phone.jpg",
   ];
 
-  if (process.env.NODE_ENV === "production") {
-    if (isBrowser) {
-      if (typeof window !== undefined && typeof window.location !== undefined) {
-        global.window.location.href = "https://bunjang-clone.vercel.app";
-      }
-    } else if (isMobile) {
-      if (typeof window !== undefined && typeof window.location !== undefined) {
-        global.window.location.href = "https://bunjang-clone-mobile.vercel.app";
-      }
-    }
-  }
-
   return (
     <div className="index_page">
       <Category />
