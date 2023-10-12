@@ -41,9 +41,13 @@ export default async function Home() {
 
   if (process.env.NODE_ENV === "production") {
     if (isBrowser) {
-      window.location.href = "https://bunjang-clone.vercel.app";
+      if (typeof window !== undefined) {
+        window.location.href = "https://bunjang-clone.vercel.app";
+      }
     } else if (isMobile) {
-      window.location.href = "https://bunjang-clone-mobile.vercel.app";
+      if (typeof window !== undefined) {
+        window.location.href = "https://bunjang-clone-mobile.vercel.app";
+      }
     }
   }
 
