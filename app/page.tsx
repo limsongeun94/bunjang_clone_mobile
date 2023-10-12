@@ -39,16 +39,13 @@ export default async function Home() {
     "./banners/keyring banner - phone.jpg",
   ];
 
-  // if (
-  //   process.env.NEXT_PUBLIC_API_HOST ===
-  //   "https://bunjang-clone-mobile.vercel.app/api"
-  // ) {
-  //   if (isBrowser) {
-  //     location.href = ""
-  //   }
-  // }
-
-  console.log(process.env.NODE_ENV);
+  if (process.env.NODE_ENV === "production") {
+    if (isBrowser) {
+      location.href = "https://bunjang-clone.vercel.app";
+    } else if (isMobile) {
+      location.href = "https://bunjang-clone-mobile.vercel.app";
+    }
+  }
 
   return (
     <div className="index_page">
